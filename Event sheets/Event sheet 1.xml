@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <comment>If the player is touching the screen, move towards the touch position.  Only move the player if they are further away from the touch than it is going to move - this avoids an unpleasent jittering when reaching the touch position.</comment>
+        <event-block sid="8085516378147026">
+            <conditions>
+                <condition id="2" name="Is in touch" sid="6666287104490048" type="Touch" />
+                <condition id="-8" name="Compare two values" sid="2590878950667424" type="System">
+                    <param id="0" name="First value">distance(Player.X, Player.Y, Touch.X, Touch.Y)</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">300 * dt</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-23" name="Move at angle" sid="188478317524253" type="Player">
+                    <param id="0" name="Angle">angle(Self.X, Self.Y, Touch.X, Touch.Y)</param>
+                    <param id="1" name="Distance">300 * dt</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Make a random enemy shoot every 1 second.</comment>
+        <event-block sid="7638711388050471">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="5970043854231369" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+                <condition id="-16" name="Pick random instance" sid="36882639353252" type="System">
+                    <param id="0" name="Object">Enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="5657284414868353" type="Enemy">
+                    <param id="0" name="Object">EnemyBullet</param>
+                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Every 2 seconds make a new enemy spawn at a random horizontal position at the top of the screen.</comment>
+        <event-block sid="1992624714236339">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="4654092486844458" type="System">
+                    <param id="0" name="Interval (seconds)">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="5636572497815455" type="System">
+                    <param id="0" name="Object to create">Enemy</param>
+                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                    <param id="2" name="X">random(30, 450)</param>
+                    <param id="3" name="Y">-20</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If any enemies are above the player, make the player automatically shoot 10 times a second.</comment>
+        <event-block sid="1508400842182784">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="4403901418462845" type="Enemy">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="Y co-ordinate">Player.Y</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="7583842926358312" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+                <condition id="3" name="Is button down" sid="1335735597192303" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Button">6</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="8131749694212279" type="Player">
+                    <param id="0" name="Object">Bullet</param>
+                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="25" name="Play at object" sid="1392752310192318" type="Audio">
+                    <param id="0" name="Audio file">pew</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Player</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If a player bullet hits an enemy, subtract 1 from their health.  If the enemy runs out of health, destroy it.</comment>
+        <event-block sid="3082253026787913">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="69375090881874" type="Enemy">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="Y co-ordinate">Player.Y</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="1978534908025401" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+                <condition id="3" name="Is button down" sid="7684337346443848" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Button">7</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="4927446944594261" type="Player2">
+                    <param id="0" name="Object">Bullet</param>
+                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="25" name="Play at object" sid="736065566502466" type="Audio">
+                    <param id="0" name="Audio file">pew</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Player2</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="379893924002785">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7298637217365004" type="Bullet">
+                    <param id="0" name="Object">Enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="3067123904965754" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="898530252795106" type="Bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="8211397968408667">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="2818518150593958" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1846316993516929" type="Enemy" />
+            </actions>
+        </event-block>
+        <comment>If an enemy bullet hits the player, just destroy the bullet.  TODO: player health!</comment>
+        <event-block sid="5803365796019762">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2833872710131508" type="EnemyBullet">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="7143117870673165" type="EnemyBullet" />
+            </actions>
+        </event-block>
+        <comment>Destroy any enemies which make it to the bottom of the screen and leave the layout.</comment>
+        <event-block sid="1110148991420708">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="7649822534221979" type="Enemy">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+                <condition id="-4" name="Is outside layout" sid="9331663998129227" type="Enemy" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="110969997790267" type="Enemy" />
+                <action id="25" name="Play at object" sid="3172630029785718" type="Audio">
+                    <param id="0" name="Audio file">small_splosion</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Enemy</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Destroy the initial star object in the layout.</comment>
+        <event-block sid="1962933146967913">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8152208617927243" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="2405475707592166" type="Star" />
+            </actions>
+        </event-block>
+        <comment>Create 50 random stars with different speeds and sizes on startup to create a space background effect.  The stars have a wrap behavior which keeps them on-screen.</comment>
+        <event-block sid="5485387986874201">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7650819342176192" type="System" />
+                <condition id="-12" name="Repeat" sid="2278455488511765" type="System">
+                    <param id="0" name="Count">50</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="9176855446197518" type="System">
+                    <param id="0" name="Object to create">Star</param>
+                    <param id="1" name="Layer">&quot;Background&quot;</param>
+                    <param id="2" name="X">random(LayoutWidth)</param>
+                    <param id="3" name="Y">random(LayoutHeight)</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="7125701164937127" type="Star">
+                    <param id="0" name="Speed">random(10, 80)</param>
+                </action>
+                <action id="9" name="Set scale" sid="7430655799318445" type="Star">
+                    <param id="0" name="Scale">Self.Bullet.Speed / 250</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="8469080400229223" type="Star">
+                    <param id="0" name="Opacity">Self.Bullet.Speed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6221205934686134">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="8181772407350036" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">0</param>
+                    <param id="2" name="Comparison">2</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="2553066926157612" type="Player">
+                    <param id="0" name="Control">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4578980800796312">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="3029147539856144" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">0</param>
+                    <param id="2" name="Comparison">4</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="5109078999650653" type="Player">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3061256688676425">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="5545748692314983" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">1</param>
+                    <param id="2" name="Comparison">2</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="1338471391852033" type="Player">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1544235070965125">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="6934385299631126" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">1</param>
+                    <param id="2" name="Comparison">4</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="8258664674794867" type="Player">
+                    <param id="0" name="Control">3</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4303428239999192">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="4984949214456873" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">2</param>
+                    <param id="2" name="Comparison">2</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="3001479703474869" type="Player2">
+                    <param id="0" name="Control">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="1629593819329508" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5694034570381786">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="3691745580080238" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">2</param>
+                    <param id="2" name="Comparison">4</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="4368871629619114" type="Player2">
+                    <param id="0" name="Control">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="4542136342545171" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="55316988698476">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="866159101286137" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">3</param>
+                    <param id="2" name="Comparison">2</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="7504624213956544" type="Player2">
+                    <param id="0" name="Control">2</param>
+                </action>
+                <action id="-10" name="Set value" sid="2259660471273546" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3481397467531758">
+            <conditions>
+                <condition id="5" name="Compare axis" sid="8909594505870857" type="Gamepad">
+                    <param id="0" name="Gamepad">0</param>
+                    <param id="1" name="Axis">3</param>
+                    <param id="2" name="Comparison">4</param>
+                    <param id="3" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="3383439074787022" type="Player2">
+                    <param id="0" name="Control">3</param>
+                </action>
+                <action id="-10" name="Set value" sid="5912246796509944" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3937999036792105">
+            <conditions>
+                <condition id="-25" name="On loader layout complete" sid="2189925755137107" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="4977118980570145" type="Audio">
+                    <param id="0" name="Audio file">dododod</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="4311760156946653" static="0" type="number">2</variable>
+        <event-group description="If stick is inactive, make the second ship follow the first ship" sid="7168927639839756" title="Auto Pilot">
+            <sub-events>
+                <event-block sid="7239340143530912">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="2484350883280269" type="System" />
+                        <condition id="5" name="Compare axis" sid="1408722695072208" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Axis">2</param>
+                            <param id="2" name="Comparison">0</param>
+                            <param id="3" name="Value">0</param>
+                        </condition>
+                        <condition id="5" name="Compare axis" sid="9560509489794147" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Axis">3</param>
+                            <param id="2" name="Comparison">0</param>
+                            <param id="3" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="6412840344957328" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9882678809466788">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="2529809145772593" type="System" />
+                        <condition id="-7" name="Compare instance variable" sid="6629681326183156" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="5848974289934456" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="9" name="Set vector X" sid="5865119605521166" type="Player2">
+                            <param id="0" name="Vector X">(Player.X - Player2.X)*4</param>
+                        </action>
+                        <action behavior="8Direction" id="10" name="Set vector Y" sid="8001877520442073" type="Player2">
+                            <param id="0" name="Vector Y">((Player.Y + Player.Height*1.5) - Player2.Y)*2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

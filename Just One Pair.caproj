@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Just One Pair</name>
+    <description></description>
+    <version>1.0</version>
+    <author></author>
+    <author-email></author-email>
+    <author-website></author-website>
+    <app-id></app-id>
+    <unique-id>2ajxfw52ycy8u</unique-id>
+    <saved-with-version>15200</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+        <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>480</width>
+        <height>640</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Hide address bar">No</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Preview browser">Chrome</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use iOS retina display">All devices</prop>
+    </configuration-settings>
+    <object-folder expanded="1">
+        <object-type name="Player" sid="3492872084348652">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="BoundToLayout" sid="5977087967787051">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="8Direction" sid="9167231027967154">
+                    <behavior id="EightDir" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5061656273571758" speed="5">
+                    <frame duration="1" hotspotX="0.325" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1.075" y="0.5" />
+                        <collision-poly>
+                            <point x="1" y="0.5" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Bullet" sid="8463159540309092">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="201142475297645">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="5340720784141373">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1446900065860302" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.571429">
+                        <collision-poly>
+                            <point x="0.0666667" y="0.142857" />
+                            <point x="0.933333" y="0.142857" />
+                            <point x="0.933333" y="0.857143" />
+                            <point x="0.0666667" y="0.857143" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Touch" sid="9123740797579455">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="Enemy" sid="3482186331540633">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Health" sid="8428993337337744" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="6125448866736031">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3303144358739043" speed="5">
+                    <frame duration="1" hotspotX="0.34375" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1.09375" y="0.5" />
+                        <collision-poly>
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyBullet" sid="8429116645308059">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="8857805398974285">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="9122756062402166">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7871800761645765" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.6">
+                        <collision-poly>
+                            <point x="0.916667" y="0.2" />
+                            <point x="0.916667" y="0.8" />
+                            <point x="0.0833333" y="0.8" />
+                            <point x="0.0833333" y="0.2" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Text" sid="6070134095872353">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Star" sid="5061534729121252">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="7382889858060511">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Wrap" sid="9152882678129181">
+                    <behavior id="wrap" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2892040823851479" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Player2" sid="4501355982889206">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Record how long it&apos;s been since the player was controlled manually" name="IdleTime" sid="2678146888408955" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="BoundToLayout" sid="6586685561253555">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="8Direction" sid="2496624979088135">
+                    <behavior id="EightDir" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="576900107645052" speed="5">
+                    <frame duration="1" hotspotX="0.325" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1.075" y="0.5" />
+                        <collision-poly>
+                            <point x="1" y="0.5" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Gamepad" sid="9917188275050835">
+            <plugin id="gamepad" />
+        </object-type>
+        <object-type name="Audio" sid="1390233802345775">
+            <plugin id="Audio" />
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder expanded="1">
+        <layout>Layout 1.xml</layout>
+    </layout-folder>
+    <event-folder expanded="1">
+        <event-sheet>Event sheet 1.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Touch" uid="6">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Gamepad" uid="8">
+            <properties>
+                <analog-deadzone>25</analog-deadzone>
+            </properties>
+        </global-instance>
+        <global-instance type="Audio" uid="9">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+                <speed-of-sound>5000</speed-of-sound>
+                <doppler-factor>1</doppler-factor>
+            </properties>
+        </global-instance>
+    </global-instances>
+    <sounds-folder expanded="1">
+        <file name="dododod.m4a" />
+        <file name="dododod.ogg" />
+        <file name="dododod.wav" />
+        <file name="pew.m4a" />
+        <file name="pew.ogg" />
+        <file name="pew.wav" />
+        <file name="pop.m4a" />
+        <file name="pop.ogg" />
+        <file name="pop.wav" />
+        <file name="small_splosion.m4a" />
+        <file name="small_splosion.ogg" />
+        <file name="small_splosion.wav" />
+    </sounds-folder>
+    <music-folder expanded="1" />
+    <files-folder expanded="1">
+        <file-folder expanded="0" name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
