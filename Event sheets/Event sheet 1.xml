@@ -500,19 +500,14 @@
                 <condition id="-1" name="Every tick" sid="2856209479822469" type="System" />
             </conditions>
             <actions>
-                <action id="-4" name="Set position to another object" sid="7632434600044006" type="Text">
-                    <param id="0" name="Object">Player</param>
-                    <param id="1" name="Image point (optional)">2</param>
+                <action id="-5" name="Set width" sid="4791819170085555" type="RedHealthBar">
+                    <param id="0" name="Width">8*Player.health</param>
                 </action>
-                <action id="-4" name="Set position to another object" sid="1001509640158874" type="Text2">
-                    <param id="0" name="Object">Player2</param>
-                    <param id="1" name="Image point (optional)">2</param>
+                <action id="-5" name="Set width" sid="2161348160253078" type="GreenHealthBar">
+                    <param id="0" name="Width">8*Player2.health</param>
                 </action>
-                <action id="0" name="Set text" sid="5978172185841113" type="Text">
-                    <param id="0" name="Text">str(Player.health)</param>
-                </action>
-                <action id="0" name="Set text" sid="6292001338551395" type="Text2">
-                    <param id="0" name="Text">Player2.health &amp; &quot;(&quot; &amp; Player2.numDronesAvailable &amp; &quot;)&quot;</param>
+                <action id="-5" name="Set width" sid="5826717462590976" type="AvailableDronesBar">
+                    <param id="0" name="Width">14*Player2.numDronesAvailable</param>
                 </action>
             </actions>
         </event-block>
@@ -526,7 +521,6 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="3293298022767049" type="Player" />
-                <action id="-9" name="Destroy" sid="328148038264872" type="Text" />
             </actions>
         </event-block>
         <event-block sid="3237434406662509">
@@ -539,7 +533,6 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="7611634465320942" type="Player2" />
-                <action id="-9" name="Destroy" sid="873901836942866" type="Text2" />
             </actions>
         </event-block>
         <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">2</variable>

@@ -10,22 +10,23 @@
     <unique-id>2ajxfw52ycy8u</unique-id>
     <saved-with-version>15200</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
-        <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
-        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
     </used-plugins>
     <used-behaviors>
-        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
-        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
-        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
         <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -366,9 +367,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Text" sid="6070134095872353">
-            <plugin id="Text" />
-        </object-type>
         <object-type name="Star" sid="5061534729121252">
             <plugin id="Sprite" />
             <behaviors>
@@ -454,9 +452,6 @@
         </object-type>
         <object-type name="Audio" sid="1390233802345775">
             <plugin id="Audio" />
-        </object-type>
-        <object-type name="Text2" sid="9431813686933605">
-            <plugin id="Text" />
         </object-type>
         <object-type name="Keyboard" sid="1444266441277563">
             <plugin id="Keyboard" />
@@ -597,6 +592,18 @@
         </object-type>
         <object-type name="Instruction" sid="5944498154263661">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="RedHealthBar" sid="3382823511513245">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="GreenHealthBar" sid="3322754736081602">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="AvailableDronesBar" sid="119120681943471">
+            <plugin id="TiledBg" />
+            <texture />
         </object-type>
     </object-folder>
     <families />
