@@ -3,7 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <variable comment="Time before a drone becomes available again after using it" constant="1" name="DRONE_COOLDOWN_TIME" sid="9140078311728296" static="0" type="number">5</variable>
         <variable constant="0" name="WaveMultiplier" sid="7950187726879294" static="0" type="number">1</variable>
         <comment>If the player is touching the screen, move towards the touch position.  Only move the player if they are further away from the touch than it is going to move - this avoids an unpleasent jittering when reaching the touch position.</comment>
         <event-block sid="6073296842764159">
@@ -56,6 +55,10 @@
                 </action>
                 <action behavior="Bullet" id="0" name="Set speed" sid="1731637005200847" type="Enemy">
                     <param id="0" name="Speed">WaveMultiplier*40</param>
+                </action>
+                <action id="4" name="Set animation" sid="5548825747269737" type="Enemy">
+                    <param id="0" name="Animation">choose(&quot;Circle&quot;, &quot;Red&quot;, &quot;Jet&quot;)</param>
+                    <param id="1" name="From">1</param>
                 </action>
             </actions>
         </event-block>
@@ -216,12 +219,9 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" sid="8271863006763443" type="Drone" />
-                        <action id="-16" name="Wait" sid="9393452369769419" type="System">
-                            <param id="0" name="Seconds">DRONE_COOLDOWN_TIME</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="3104235737524238" type="Player2">
-                            <param id="0" name="Instance variable">numDronesAvailable</param>
-                            <param id="1" name="Value">clamp(Player2.numDronesAvailable+1, 0, Player2.maxDronesAvailable)</param>
+                        <action id="0" name="Call function" sid="7762877469038653" type="Function">
+                            <param id="0" name="Name">&quot;StartDroneCoolDown&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
                 </event-block>
@@ -543,7 +543,7 @@
             </actions>
         </event-block>
         <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">2</variable>
-        <event-group collapsed="1" description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
+        <event-group description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
             <sub-events>
                 <event-block sid="7239340143530912">
                     <conditions>
@@ -664,17 +664,14 @@
                     <conditions>
                         <condition id="-2" name="Compare Y" sid="6610407965604335" type="Drone">
                             <param id="0" name="Comparison">2</param>
-                            <param id="1" name="Y co-ordinate">-Drone.Height*4</param>
+                            <param id="1" name="Y co-ordinate">-Drone.Height*2</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" sid="4041753048988952" type="Drone" />
-                        <action id="-16" name="Wait" sid="9146032907557847" type="System">
-                            <param id="0" name="Seconds">DRONE_COOLDOWN_TIME</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="3663889816201426" type="Player2">
-                            <param id="0" name="Instance variable">numDronesAvailable</param>
-                            <param id="1" name="Value">clamp(Player2.numDronesAvailable+1, 0, Player2.maxDronesAvailable)</param>
+                        <action id="0" name="Call function" sid="4986248860353501" type="Function">
+                            <param id="0" name="Name">&quot;StartDroneCoolDown&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
                 </event-block>
@@ -693,12 +690,9 @@
                             <param id="1" name="Value">5</param>
                         </action>
                         <action id="-9" name="Destroy" sid="9425920315139348" type="Drone" />
-                        <action id="-16" name="Wait" sid="9988439468696177" type="System">
-                            <param id="0" name="Seconds">DRONE_COOLDOWN_TIME</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="4489226595489948" type="Player2">
-                            <param id="0" name="Instance variable">numDronesAvailable</param>
-                            <param id="1" name="Value">clamp(Player2.numDronesAvailable+1, 0, Player2.maxDronesAvailable)</param>
+                        <action id="0" name="Call function" sid="9957864752175169" type="Function">
+                            <param id="0" name="Name">&quot;StartDroneCoolDown&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
                 </event-block>
@@ -839,6 +833,22 @@
                 </action>
                 <action behavior="Fade" id="1" name="Start fade" sid="7655752543048254" type="StoryImg" />
                 <action behavior="Fade" id="1" name="Start fade" sid="9402349223756945" type="StoryText" />
+            </actions>
+        </event-block>
+        <event-block sid="4335552665870513">
+            <conditions>
+                <condition id="0" name="On function" sid="6332194567842016" type="Function">
+                    <param id="0" name="Name">&quot;StartDroneCoolDown&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="191584190439687" type="System">
+                    <param id="0" name="Seconds">5</param>
+                </action>
+                <action id="-10" name="Set value" sid="9875817102545398" type="Player2">
+                    <param id="0" name="Instance variable">numDronesAvailable</param>
+                    <param id="1" name="Value">clamp(Player2.numDronesAvailable + 1, 0, Player2.maxDronesAvailable)</param>
+                </action>
             </actions>
         </event-block>
     </events>
