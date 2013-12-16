@@ -18,8 +18,36 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="5414190283378207">
+            <conditions>
+                <condition id="-11" name="For Each" sid="678653891262565" type="System">
+                    <param id="0" name="Object">CircleEnemy</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="7607260228470032" type="CircleEnemy">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1484420537571985" type="CircleEnemy" />
+            </actions>
+        </event-block>
+        <event-block sid="7406852374876021">
+            <conditions>
+                <condition id="-11" name="For Each" sid="2635892901535749" type="System">
+                    <param id="0" name="Object">TinyCircle</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="2941472002519962" type="TinyCircle">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="8586025283624848" type="TinyCircle" />
+            </actions>
+        </event-block>
         <comment>Make a random enemy shoot every 1 second.</comment>
-        <event-block sid="7638711388050471">
+        <event-block disabled="1" sid="7638711388050471">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="5970043854231369" type="System">
                     <param id="0" name="Interval (seconds)">random(0.3,2/WaveMultiplier)</param>
@@ -40,7 +68,7 @@
             </actions>
         </event-block>
         <comment>Every 2 seconds make a new enemy spawn at a random horizontal position at the top of the screen.</comment>
-        <event-block sid="1992624714236339">
+        <event-block disabled="1" sid="1992624714236339">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="4654092486844458" type="System">
                     <param id="0" name="Interval (seconds)">random(1,4/WaveMultiplier)</param>
@@ -589,7 +617,7 @@
         </event-group>
         <variable constant="1" name="DRONE_CIRCLE_SPEED" sid="1139560629416788" static="0" type="number">120</variable>
         <variable constant="1" name="DRONE_CIRCLE_DISTANCE" sid="9249968425961828" static="0" type="number">45</variable>
-        <event-group collapsed="1" description="" sid="4942832535149624" title="Drone Ability">
+        <event-group description="" sid="4942832535149624" title="Drone Ability">
             <sub-events>
                 <event-block sid="4861297341924405">
                     <conditions>
@@ -692,6 +720,277 @@
             </sub-events>
         </event-group>
         <variable constant="1" name="DIALOG_PAUSE_TIME" sid="6552068629347387" static="0" type="number">4</variable>
+        <event-group description="" sid="5745410259253815" title="Circle Enemy">
+            <sub-events>
+                <event-block sid="5712404028506611">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="8825494621787155" type="System">
+                            <param id="0" name="Interval (seconds)">random(2,3)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2604391980081059">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="3840087011443066" type="System">
+                                    <param id="0" name="Object">CircleEnemy</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="4218668864532388">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="5715553064651076" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="5133531635281204" type="System">
+                                    <param id="0" name="Object to create">CircleEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">random(80,120)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="1113706505764727" type="System">
+                                    <param id="0" name="Object to create">CircleEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">random(220,260)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="4381290525244261" type="System">
+                                    <param id="0" name="Object to create">CircleEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">random(370,410)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6170084757166501">
+                    <conditions>
+                        <condition id="-24" name="For Each (ordered)" sid="5647929289123244" type="System">
+                            <param id="0" name="Object">CircleEnemy</param>
+                            <param id="1" name="Expression">0</param>
+                            <param id="2" name="Order">0</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="6177031926167509" type="CircleEnemy">
+                            <param id="0" name="Instance variable">isDescended</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="5007510477327007" type="CircleEnemy">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">120</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="4734076530747957" type="CircleEnemy">
+                            <param id="0" name="Instance variable">isDescended</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="296998329009871" type="CircleEnemy">
+                            <param id="0" name="Angle">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6044876700103092" type="CircleEnemy">
+                            <param id="0" name="Instance variable">xStart</param>
+                            <param id="1" name="Value">CircleEnemy.X</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="7833151813427252" type="CircleEnemy">
+                            <param id="0" name="Speed">0</param>
+                        </action>
+                        <action behavior="Sine" id="0" name="Set active" sid="8599598202813668" type="CircleEnemy">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7257802432317312">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="4409618380904477" type="System">
+                            <param id="0" name="Interval (seconds)">7</param>
+                        </condition>
+                        <condition id="-24" name="For Each (ordered)" sid="4600668132542092" type="System">
+                            <param id="0" name="Object">CircleEnemy</param>
+                            <param id="1" name="Expression">0</param>
+                            <param id="2" name="Order">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="4570645115396113" type="CircleEnemy">
+                            <param id="0" name="Object">TinyCircle</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="6000615954825787" type="TinyCircle">
+                            <param id="0" name="Angle">90</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7925008095143574">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="4878717054792474" type="System">
+                            <param id="0" name="Interval (seconds)">random(0.3,2/WaveMultiplier)</param>
+                        </condition>
+                        <condition id="-16" name="Pick random instance" sid="4105292838619179" type="System">
+                            <param id="0" name="Object">TinyCircle</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="1761002821128113" type="TinyCircle">
+                            <param id="0" name="Object">EnemyBullet</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="9729700970643798" type="EnemyBullet">
+                            <param id="0" name="Speed">200*WaveMultiplier</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5263471937976366">
+                    <conditions>
+                        <condition id="-24" name="For Each (ordered)" sid="1045506653461729" type="System">
+                            <param id="0" name="Object">TinyCircle</param>
+                            <param id="1" name="Expression">0</param>
+                            <param id="2" name="Order">0</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="3335615416822495" type="TinyCircle">
+                            <param id="0" name="Instance variable">isDescended</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="5665796084080795" type="TinyCircle">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">300</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="2779309703910337" type="TinyCircle">
+                            <param id="0" name="Instance variable">isDescended</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3681313870866064" type="TinyCircle">
+                            <param id="0" name="Instance variable">xStart</param>
+                            <param id="1" name="Value">TinyCircle.X</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="4536472568879833" type="TinyCircle">
+                            <param id="0" name="Speed">0</param>
+                        </action>
+                        <action behavior="Rotate" id="0" name="Set active" sid="8149218294091523" type="TinyCircle">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9983202275930269">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="580745620313453" type="Bullet">
+                            <param id="0" name="Object">CircleEnemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="7550461466567985" type="CircleEnemy">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action disabled="1" id="-9" name="Destroy" sid="5894220756157309" type="Bullet" />
+                        <action id="-16" name="Set opacity" sid="9888011717797345" type="CircleEnemy">
+                            <param id="0" name="Opacity">20</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="5974361579523774" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="1314577101937236" type="CircleEnemy">
+                            <param id="0" name="Opacity">80</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="6546391575437047" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="4353101187544943" type="CircleEnemy">
+                            <param id="0" name="Opacity">20</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="8767879270922314" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="8900454452368233" type="CircleEnemy">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2179321331953354">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7547261000662584" type="Bullet">
+                            <param id="0" name="Object">TinyCircle</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="6994775678252157" type="TinyCircle">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action disabled="1" id="-9" name="Destroy" sid="1726131429577278" type="Bullet" />
+                        <action id="-16" name="Set opacity" sid="9356563803834905" type="TinyCircle">
+                            <param id="0" name="Opacity">20</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="6102562221817681" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="3412190789934566" type="TinyCircle">
+                            <param id="0" name="Opacity">80</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="7144470731318542" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="4342226346973752" type="TinyCircle">
+                            <param id="0" name="Opacity">20</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="8628169203425126" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="9306442424185781" type="TinyCircle">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3766652415860691">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="5630889286688576" type="CircleEnemy">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="7916779476941547" type="CircleEnemy" />
+                        <action id="25" name="Play at object" sid="2763435148835211" type="Audio">
+                            <param id="0" name="Audio file">small_splosion</param>
+                            <param id="1" name="Loop">0</param>
+                            <param id="2" name="Volume">0</param>
+                            <param id="3" name="Object">Enemy</param>
+                            <param id="4" name="Inner angle">360</param>
+                            <param id="5" name="Outer angle">360</param>
+                            <param id="6" name="Outer gain">0</param>
+                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8863134301090712">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="8271149181884528" type="TinyCircle">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="6690125130655984" type="TinyCircle" />
+                        <action id="25" name="Play at object" sid="8055175299043841" type="Audio">
+                            <param id="0" name="Audio file">small_splosion</param>
+                            <param id="1" name="Loop">0</param>
+                            <param id="2" name="Volume">0</param>
+                            <param id="3" name="Object">Enemy</param>
+                            <param id="4" name="Inner angle">360</param>
+                            <param id="5" name="Outer angle">360</param>
+                            <param id="6" name="Outer gain">0</param>
+                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group collapsed="1" description="" sid="1609306543797418" title="Story and Dialogue">
             <sub-events>
                 <event-block sid="7217554999824965">
