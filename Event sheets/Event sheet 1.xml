@@ -425,6 +425,11 @@
                             <param id="2" name="Comparison">0</param>
                             <param id="3" name="Value">0</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="5848974289934456" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-11" name="Add to" sid="6412840344957328" type="Player2">
@@ -439,11 +444,6 @@
                         <condition id="-7" name="Compare instance variable" sid="6629681326183156" type="Player2">
                             <param id="0" name="Instance variable">IdleTime</param>
                             <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" sid="5848974289934456" type="Player2">
-                            <param id="0" name="Instance variable">IdleTime</param>
-                            <param id="1" name="Comparison">2</param>
                             <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
                         </condition>
                     </conditions>
