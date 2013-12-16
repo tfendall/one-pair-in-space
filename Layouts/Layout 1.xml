@@ -247,6 +247,7 @@
                     </properties>
                     <instance-variables>
                         <health>10</health>
+                        <IdleTime>0</IdleTime>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">

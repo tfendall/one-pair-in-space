@@ -191,6 +191,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="health" sid="4170364823772381" type="number" />
+                <instance-variable comment="Record how long it&apos;s been since the player was controlled manually" name="IdleTime" sid="179150948800561" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="BoundToLayout" sid="6586685561253555">

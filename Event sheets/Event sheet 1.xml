@@ -310,6 +310,10 @@
                 <action behavior="8Direction" id="7" name="Simulate control" sid="3001479703474869" type="Player2">
                     <param id="0" name="Control">0</param>
                 </action>
+                <action id="-10" name="Set value" sid="1482342876570253" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="5694034570381786">
@@ -324,6 +328,10 @@
             <actions>
                 <action behavior="8Direction" id="7" name="Simulate control" sid="4368871629619114" type="Player2">
                     <param id="0" name="Control">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="9584804639503155" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
                 </action>
             </actions>
         </event-block>
@@ -340,6 +348,10 @@
                 <action behavior="8Direction" id="7" name="Simulate control" sid="7504624213956544" type="Player2">
                     <param id="0" name="Control">2</param>
                 </action>
+                <action id="-10" name="Set value" sid="7982929028943758" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="3481397467531758">
@@ -354,6 +366,10 @@
             <actions>
                 <action behavior="8Direction" id="7" name="Simulate control" sid="3383439074787022" type="Player2">
                     <param id="0" name="Control">3</param>
+                </action>
+                <action id="-10" name="Set value" sid="7682985913275587" type="Player2">
+                    <param id="0" name="Instance variable">IdleTime</param>
+                    <param id="1" name="Value">0</param>
                 </action>
             </actions>
         </event-block>
@@ -391,5 +407,56 @@
                 </action>
             </actions>
         </event-block>
+        <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">2</variable>
+        <event-group description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
+            <sub-events>
+                <event-block sid="7239340143530912">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="2484350883280269" type="System" />
+                        <condition id="5" name="Compare axis" sid="1408722695072208" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Axis">2</param>
+                            <param id="2" name="Comparison">0</param>
+                            <param id="3" name="Value">0</param>
+                        </condition>
+                        <condition id="5" name="Compare axis" sid="9560509489794147" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Axis">3</param>
+                            <param id="2" name="Comparison">0</param>
+                            <param id="3" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="6412840344957328" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9882678809466788">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="2529809145772593" type="System" />
+                        <condition id="-7" name="Compare instance variable" sid="6629681326183156" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="5848974289934456" type="Player2">
+                            <param id="0" name="Instance variable">IdleTime</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="9" name="Set vector X" sid="5865119605521166" type="Player2">
+                            <param id="0" name="Vector X">(Player.X - Player2.X)*4</param>
+                        </action>
+                        <action behavior="8Direction" id="10" name="Set vector Y" sid="8001877520442073" type="Player2">
+                            <param id="0" name="Vector Y">((Player.Y + Player.Height*1.5) - Player2.Y)*2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
