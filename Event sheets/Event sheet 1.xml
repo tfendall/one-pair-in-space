@@ -3,20 +3,18 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
+        <variable constant="0" name="WaveMultiplier" sid="7950187726879294" static="0" type="number">1</variable>
         <comment>If the player is touching the screen, move towards the touch position.  Only move the player if they are further away from the touch than it is going to move - this avoids an unpleasent jittering when reaching the touch position.</comment>
-        <event-block sid="8085516378147026">
+        <event-block sid="6073296842764159">
             <conditions>
-                <condition id="2" name="Is in touch" sid="6666287104490048" type="Touch" />
-                <condition id="-8" name="Compare two values" sid="2590878950667424" type="System">
-                    <param id="0" name="First value">distance(Player.X, Player.Y, Touch.X, Touch.Y)</param>
-                    <param id="1" name="Comparison">5</param>
-                    <param id="2" name="Second value">300 * dt</param>
+                <condition id="-6" name="Every X seconds" sid="1081623918303394" type="System">
+                    <param id="0" name="Interval (seconds)">10</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-23" name="Move at angle" sid="188478317524253" type="Player">
-                    <param id="0" name="Angle">angle(Self.X, Self.Y, Touch.X, Touch.Y)</param>
-                    <param id="1" name="Distance">300 * dt</param>
+                <action id="-10" name="Add to" sid="1837880045975909" type="System">
+                    <param id="0" name="Variable">WaveMultiplier</param>
+                    <param id="1" name="Value">0.3</param>
                 </action>
             </actions>
         </event-block>
@@ -24,7 +22,7 @@
         <event-block sid="7638711388050471">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="5970043854231369" type="System">
-                    <param id="0" name="Interval (seconds)">1.0</param>
+                    <param id="0" name="Interval (seconds)">random(0.3,2/WaveMultiplier)</param>
                 </condition>
                 <condition id="-16" name="Pick random instance" sid="36882639353252" type="System">
                     <param id="0" name="Object">Enemy</param>
@@ -36,13 +34,16 @@
                     <param id="1" name="Layer">&quot;Game&quot;</param>
                     <param id="2" name="Image point">1</param>
                 </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="3927596062630054" type="EnemyBullet">
+                    <param id="0" name="Speed">200*WaveMultiplier</param>
+                </action>
             </actions>
         </event-block>
         <comment>Every 2 seconds make a new enemy spawn at a random horizontal position at the top of the screen.</comment>
         <event-block sid="1992624714236339">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="4654092486844458" type="System">
-                    <param id="0" name="Interval (seconds)">2</param>
+                    <param id="0" name="Interval (seconds)">random(1,4/WaveMultiplier)</param>
                 </condition>
             </conditions>
             <actions>
@@ -52,74 +53,79 @@
                     <param id="2" name="X">random(30, 450)</param>
                     <param id="3" name="Y">-20</param>
                 </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="1731637005200847" type="Enemy">
+                    <param id="0" name="Speed">WaveMultiplier*40</param>
+                </action>
             </actions>
         </event-block>
         <comment>If any enemies are above the player, make the player automatically shoot 10 times a second.</comment>
         <event-block sid="1508400842182784">
             <conditions>
-                <condition id="-2" name="Compare Y" sid="4403901418462845" type="Enemy">
-                    <param id="0" name="Comparison">2</param>
-                    <param id="1" name="Y co-ordinate">Player.Y</param>
-                </condition>
                 <condition id="-6" name="Every X seconds" sid="7583842926358312" type="System">
                     <param id="0" name="Interval (seconds)">0.1</param>
                 </condition>
-                <condition id="3" name="Is button down" sid="1335735597192303" type="Gamepad">
-                    <param id="0" name="Gamepad">0</param>
-                    <param id="1" name="Button">6</param>
-                </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="8131749694212279" type="Player">
-                    <param id="0" name="Object">Bullet</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-                <action id="25" name="Play at object" sid="1392752310192318" type="Audio">
-                    <param id="0" name="Audio file">pew</param>
-                    <param id="1" name="Loop">0</param>
-                    <param id="2" name="Volume">0</param>
-                    <param id="3" name="Object">Player</param>
-                    <param id="4" name="Inner angle">360</param>
-                    <param id="5" name="Outer angle">360</param>
-                    <param id="6" name="Outer gain">0</param>
-                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="7170773183616592">
+                    <conditions>
+                        <condition id="3" name="Is button down" sid="7888395583162324" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">6</param>
+                        </condition>
+                        <condition id="2" name="Key is down" sid="5599426794089962" type="Keyboard">
+                            <param id="0" name="Key">69 (E)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="8131749694212279" type="Player">
+                            <param id="0" name="Object">Bullet</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="25" name="Play at object" sid="1392752310192318" type="Audio">
+                            <param id="0" name="Audio file">pew</param>
+                            <param id="1" name="Loop">0</param>
+                            <param id="2" name="Volume">0</param>
+                            <param id="3" name="Object">Player</param>
+                            <param id="4" name="Inner angle">360</param>
+                            <param id="5" name="Outer angle">360</param>
+                            <param id="6" name="Outer gain">0</param>
+                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="5937028107697718">
+                    <conditions>
+                        <condition id="3" name="Is button down" sid="6379481628358043" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">7</param>
+                        </condition>
+                        <condition id="2" name="Key is down" sid="6806257562100396" type="Keyboard">
+                            <param id="0" name="Key">85 (U)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="4927446944594261" type="Player2">
+                            <param id="0" name="Object">Bullet</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="25" name="Play at object" sid="736065566502466" type="Audio">
+                            <param id="0" name="Audio file">pew</param>
+                            <param id="1" name="Loop">0</param>
+                            <param id="2" name="Volume">0</param>
+                            <param id="3" name="Object">Player2</param>
+                            <param id="4" name="Inner angle">360</param>
+                            <param id="5" name="Outer angle">360</param>
+                            <param id="6" name="Outer gain">0</param>
+                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>If a player bullet hits an enemy, subtract 1 from their health.  If the enemy runs out of health, destroy it.</comment>
-        <event-block sid="3082253026787913">
-            <conditions>
-                <condition id="-2" name="Compare Y" sid="69375090881874" type="Enemy">
-                    <param id="0" name="Comparison">2</param>
-                    <param id="1" name="Y co-ordinate">Player.Y</param>
-                </condition>
-                <condition id="-6" name="Every X seconds" sid="1978534908025401" type="System">
-                    <param id="0" name="Interval (seconds)">0.1</param>
-                </condition>
-                <condition id="3" name="Is button down" sid="7684337346443848" type="Gamepad">
-                    <param id="0" name="Gamepad">0</param>
-                    <param id="1" name="Button">7</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="4927446944594261" type="Player2">
-                    <param id="0" name="Object">Bullet</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-                <action id="25" name="Play at object" sid="736065566502466" type="Audio">
-                    <param id="0" name="Audio file">pew</param>
-                    <param id="1" name="Loop">0</param>
-                    <param id="2" name="Volume">0</param>
-                    <param id="3" name="Object">Player2</param>
-                    <param id="4" name="Inner angle">360</param>
-                    <param id="5" name="Outer angle">360</param>
-                    <param id="6" name="Outer gain">0</param>
-                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="379893924002785">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="7298637217365004" type="Bullet">
@@ -173,6 +179,17 @@
                     <param id="0" name="Instance variable">health</param>
                     <param id="1" name="Value">1</param>
                 </action>
+                <action id="-34" name="Set layer background color" sid="6736776796623517" type="System">
+                    <param id="0" name="Layer">0</param>
+                    <param id="1" name="Color">rgb(150, 0, 0)</param>
+                </action>
+                <action id="-16" name="Wait" sid="755600476720439" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-34" name="Set layer background color" sid="6781834216788562" type="System">
+                    <param id="0" name="Layer">0</param>
+                    <param id="1" name="Color">rgb(0, 0, 0)</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="8034113915817586">
@@ -186,6 +203,17 @@
                 <action id="-12" name="Subtract from" sid="7268792319190709" type="Player2">
                     <param id="0" name="Instance variable">health</param>
                     <param id="1" name="Value">1</param>
+                </action>
+                <action id="-34" name="Set layer background color" sid="1378826415395695" type="System">
+                    <param id="0" name="Layer">0</param>
+                    <param id="1" name="Color">rgb(150, 0, 0)</param>
+                </action>
+                <action id="-16" name="Wait" sid="2138827141639718" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-34" name="Set layer background color" sid="1220725580905344" type="System">
+                    <param id="0" name="Layer">0</param>
+                    <param id="1" name="Color">rgb(0, 0, 0)</param>
                 </action>
             </actions>
         </event-block>
@@ -230,20 +258,23 @@
                     <param id="0" name="Speed">random(10, 80)</param>
                 </action>
                 <action id="9" name="Set scale" sid="7430655799318445" type="Star">
-                    <param id="0" name="Scale">Self.Bullet.Speed / 250</param>
+                    <param id="0" name="Scale">Self.Bullet.Speed / 350</param>
                 </action>
                 <action id="-16" name="Set opacity" sid="8469080400229223" type="Star">
                     <param id="0" name="Opacity">Self.Bullet.Speed</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="6221205934686134">
+        <event-block any="1" sid="6221205934686134">
             <conditions>
                 <condition id="5" name="Compare axis" sid="8181772407350036" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">0</param>
                     <param id="2" name="Comparison">2</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="9148133099526391" type="Keyboard">
+                    <param id="0" name="Key">65 (A)</param>
                 </condition>
             </conditions>
             <actions>
@@ -252,13 +283,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="4578980800796312">
+        <event-block any="1" sid="4578980800796312">
             <conditions>
                 <condition id="5" name="Compare axis" sid="3029147539856144" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">0</param>
                     <param id="2" name="Comparison">4</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="6651384943529142" type="Keyboard">
+                    <param id="0" name="Key">68 (D)</param>
                 </condition>
             </conditions>
             <actions>
@@ -267,13 +301,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="3061256688676425">
+        <event-block any="1" sid="3061256688676425">
             <conditions>
                 <condition id="5" name="Compare axis" sid="5545748692314983" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">1</param>
                     <param id="2" name="Comparison">2</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="9981275756129882" type="Keyboard">
+                    <param id="0" name="Key">87 (W)</param>
                 </condition>
             </conditions>
             <actions>
@@ -282,13 +319,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1544235070965125">
+        <event-block any="1" sid="1544235070965125">
             <conditions>
                 <condition id="5" name="Compare axis" sid="6934385299631126" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">1</param>
                     <param id="2" name="Comparison">4</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="5362986237018147" type="Keyboard">
+                    <param id="0" name="Key">83 (S)</param>
                 </condition>
             </conditions>
             <actions>
@@ -297,13 +337,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="4303428239999192">
+        <event-block any="1" sid="4303428239999192">
             <conditions>
                 <condition id="5" name="Compare axis" sid="4984949214456873" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">2</param>
                     <param id="2" name="Comparison">2</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="471893458314848" type="Keyboard">
+                    <param id="0" name="Key">74 (J)</param>
                 </condition>
             </conditions>
             <actions>
@@ -316,13 +359,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="5694034570381786">
+        <event-block any="1" sid="5694034570381786">
             <conditions>
                 <condition id="5" name="Compare axis" sid="3691745580080238" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">2</param>
                     <param id="2" name="Comparison">4</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="792134587823058" type="Keyboard">
+                    <param id="0" name="Key">76 (L)</param>
                 </condition>
             </conditions>
             <actions>
@@ -335,13 +381,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="55316988698476">
+        <event-block any="1" sid="55316988698476">
             <conditions>
                 <condition id="5" name="Compare axis" sid="866159101286137" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">3</param>
                     <param id="2" name="Comparison">2</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="5279946754711202" type="Keyboard">
+                    <param id="0" name="Key">73 (I)</param>
                 </condition>
             </conditions>
             <actions>
@@ -354,13 +403,16 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="3481397467531758">
+        <event-block any="1" sid="3481397467531758">
             <conditions>
                 <condition id="5" name="Compare axis" sid="8909594505870857" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
                     <param id="1" name="Axis">3</param>
                     <param id="2" name="Comparison">4</param>
                     <param id="3" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="1549518560338718" type="Keyboard">
+                    <param id="0" name="Key">75 (K)</param>
                 </condition>
             </conditions>
             <actions>
@@ -407,6 +459,32 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="6620468016848259">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="6188121604094751" type="Player">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3293298022767049" type="Player" />
+                <action id="-9" name="Destroy" sid="328148038264872" type="Text" />
+            </actions>
+        </event-block>
+        <event-block sid="3237434406662509">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="3768980565267532" type="Player2">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="7611634465320942" type="Player2" />
+                <action id="-9" name="Destroy" sid="873901836942866" type="Text2" />
+            </actions>
+        </event-block>
         <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">2</variable>
         <event-group description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
             <sub-events>
@@ -446,6 +524,7 @@
                             <param id="1" name="Comparison">5</param>
                             <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
                         </condition>
+                        <condition id="-3" name="Is on-screen" sid="73898321810441" type="Player" />
                     </conditions>
                     <actions>
                         <action behavior="8Direction" id="9" name="Set vector X" sid="5865119605521166" type="Player2">

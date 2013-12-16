@@ -10,19 +10,19 @@
     <unique-id>2ajxfw52ycy8u</unique-id>
     <saved-with-version>15200</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
-        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
     </used-plugins>
     <used-behaviors>
-        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
-        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
         <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -49,6 +49,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="health" sid="7117604545094778" type="number" />
+                <instance-variable name="isDead" sid="7189211704395115" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="BoundToLayout" sid="5977087967787051">
@@ -95,9 +96,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Touch" sid="9123740797579455">
-            <plugin id="Touch" />
-        </object-type>
         <object-type name="Enemy" sid="3482186331540633">
             <plugin id="Sprite" />
             <instance-variables>
@@ -118,8 +116,8 @@
                         <collision-poly>
                             <point x="0" y="1" />
                             <point x="0" y="0" />
-                            <point x="1" y="0" />
-                            <point x="1" y="1" />
+                            <point x="1" y="0.40625" />
+                            <point x="1" y="0.53125" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -192,6 +190,7 @@
             <instance-variables>
                 <instance-variable name="health" sid="4170364823772381" type="number" />
                 <instance-variable comment="Record how long it&apos;s been since the player was controlled manually" name="IdleTime" sid="179150948800561" type="number" />
+                <instance-variable name="isDead" sid="4207271149785883" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="BoundToLayout" sid="6586685561253555">
@@ -224,6 +223,9 @@
         <object-type name="Text2" sid="9431813686933605">
             <plugin id="Text" />
         </object-type>
+        <object-type name="Keyboard" sid="1444266441277563">
+            <plugin id="Keyboard" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
@@ -233,11 +235,6 @@
         <event-sheet>Event sheet 1.xml</event-sheet>
     </event-folder>
     <global-instances>
-        <global-instance type="Touch" uid="6">
-            <properties>
-                <use-mouse-input>Yes</use-mouse-input>
-            </properties>
-        </global-instance>
         <global-instance type="Gamepad" uid="8">
             <properties>
                 <analog-deadzone>25</analog-deadzone>
@@ -258,6 +255,7 @@
                 <doppler-factor>1</doppler-factor>
             </properties>
         </global-instance>
+        <global-instance type="Keyboard" uid="6" />
     </global-instances>
     <sounds-folder expanded="1">
         <file name="dododod.m4a" />

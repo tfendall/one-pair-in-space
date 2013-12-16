@@ -79,7 +79,7 @@
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>140</speed>
+                                <speed>200</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -169,6 +169,7 @@
                     </properties>
                     <instance-variables>
                         <health>10</health>
+                        <isDead>false</isDead>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -248,6 +249,7 @@
                     <instance-variables>
                         <health>10</health>
                         <IdleTime>0</IdleTime>
+                        <isDead>false</isDead>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
