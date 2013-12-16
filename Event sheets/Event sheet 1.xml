@@ -515,10 +515,10 @@
                 <condition id="-2" name="On start of layout" sid="2189925755137107" type="System" />
             </conditions>
             <actions>
-                <action id="0" name="Play" sid="4977118980570145" type="Audio">
-                    <param id="0" name="Audio file">dododod</param>
+                <action id="0" name="Play" sid="5513492000459224" type="Audio">
+                    <param id="0" name="Audio file">ONEPAIR</param>
                     <param id="2" name="Loop">1</param>
-                    <param id="3" name="Volume">20</param>
+                    <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
@@ -606,7 +606,7 @@
                     </conditions>
                     <actions>
                         <action behavior="8Direction" id="9" name="Set vector X" sid="5865119605521166" type="Player2">
-                            <param id="0" name="Vector X">(Player.X - Player2.X)*4</param>
+                            <param id="0" name="Vector X">(Player.X - Player2.X)*2</param>
                         </action>
                         <action behavior="8Direction" id="10" name="Set vector Y" sid="8001877520442073" type="Player2">
                             <param id="0" name="Vector Y">((Player.Y + Player.Height*1.5) - Player2.Y)*2</param>
@@ -1146,5 +1146,128 @@
                 </action>
             </actions>
         </event-block>
+        <event-group description="" sid="7134856238278004" title="Red Enemies">
+            <sub-events>
+                <event-block sid="2691140101698209">
+                    <conditions>
+                        <condition id="0" name="On function" sid="4052082309501003" type="Function">
+                            <param id="0" name="Name">&quot;SpawnRedEnemyGroup&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6405476149696549">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="1272390020438736" type="System">
+                                    <param id="0" name="Count">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="2982029061251214" type="System">
+                                    <param id="0" name="Seconds">loopindex*0.3</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="5403049295349793" type="System">
+                                    <param id="0" name="Object to create">RedEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">-50</param>
+                                    <param id="3" name="Y">140</param>
+                                </action>
+                                <action behavior="Turret" id="1" name="Add object to target" sid="3684302413145236" type="RedEnemy">
+                                    <param id="0" name="Target">Player</param>
+                                </action>
+                                <action behavior="Turret" id="1" name="Add object to target" sid="2784118372558075" type="RedEnemy">
+                                    <param id="0" name="Target">Player2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="8249527046568109">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="7535568125101566" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="7868655482140339" type="System">
+                            <param id="0" name="Seconds">2</param>
+                        </action>
+                        <action id="0" name="Call function" sid="7623317349475112" type="Function">
+                            <param id="0" name="Name">&quot;SpawnRedEnemyGroup&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3607354902592888">
+                    <conditions>
+                        <condition behavior="Turret" id="1" name="On shoot" sid="3565470344914521" type="RedEnemy" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="9913901975677493" type="RedEnemy">
+                            <param id="0" name="Object">EnemyBullet</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="9692666972108081" type="EnemyBullet">
+                            <param id="0" name="Speed">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2607527030187257">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="9436537709998846" type="Bullet">
+                            <param id="0" name="Object">RedEnemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="2107138986035117" type="RedEnemy">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="5497039849359493" type="RedEnemy">
+                            <param id="0" name="Opacity">20</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="44822895394223" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="8861006127547352" type="RedEnemy">
+                            <param id="0" name="Opacity">80</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="8105573554143773" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="1721787824498427" type="RedEnemy">
+                            <param id="0" name="Opacity">20</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="8667778677594771" type="System">
+                            <param id="0" name="Seconds">0.05</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="8583118962956408" type="RedEnemy">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6511531395489537">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9074119494647563" type="RedEnemy">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="139608752790003" type="RedEnemy" />
+                        <action id="25" name="Play at object" sid="9578119296890586" type="Audio">
+                            <param id="0" name="Audio file">small_splosion</param>
+                            <param id="1" name="Loop">0</param>
+                            <param id="2" name="Volume">0</param>
+                            <param id="3" name="Object">RedEnemy</param>
+                            <param id="4" name="Inner angle">360</param>
+                            <param id="5" name="Outer angle">360</param>
+                            <param id="6" name="Outer gain">0</param>
+                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>

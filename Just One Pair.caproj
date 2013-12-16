@@ -24,6 +24,7 @@
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
+        <behavior author="Scirra" id="Turret" version="1">Turret</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
@@ -942,6 +943,82 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="RedEnemy" sid="8852156679062052">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Health" sid="9379728522016804" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Solid" sid="110722603885209">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="YSine" sid="3895387902319088">
+                    <behavior id="Sin" />
+                </behavior-type>
+                <behavior-type name="XSine" sid="862762735496367">
+                    <behavior id="Sin" />
+                </behavior-type>
+                <behavior-type name="Turret" sid="7089916399556502">
+                    <behavior id="Turret" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="4" loop="1" name="Red" pingpong="0" repeatcount="1" repeatto="0" sid="3180932585660493" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="0.175" y="0.65" />
+                            <point x="0.025" y="0.5" />
+                            <point x="0.175" y="0.35" />
+                            <point x="0.5" y="0.3" />
+                            <point x="0.775" y="0.45" />
+                            <point x="1" y="0.5" />
+                            <point x="0.775" y="0.55" />
+                            <point x="0.5" y="0.7" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="0.175" y="0.65" />
+                            <point x="0.025" y="0.5" />
+                            <point x="0.175" y="0.35" />
+                            <point x="0.5" y="0.3" />
+                            <point x="0.775" y="0.45" />
+                            <point x="1" y="0.5" />
+                            <point x="0.775" y="0.55" />
+                            <point x="0.5" y="0.7" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="0.175" y="0.65" />
+                            <point x="0.025" y="0.5" />
+                            <point x="0.175" y="0.35" />
+                            <point x="0.5" y="0.3" />
+                            <point x="0.775" y="0.45" />
+                            <point x="1" y="0.5" />
+                            <point x="0.775" y="0.55" />
+                            <point x="0.5" y="0.7" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="0.175" y="0.65" />
+                            <point x="0.025" y="0.5" />
+                            <point x="0.175" y="0.35" />
+                            <point x="0.5" y="0.3" />
+                            <point x="0.775" y="0.45" />
+                            <point x="1" y="0.5" />
+                            <point x="0.775" y="0.55" />
+                            <point x="0.5" y="0.7" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
@@ -989,6 +1066,33 @@
         <file name="small_splosion.m4a" />
         <file name="small_splosion.ogg" />
         <file name="small_splosion.wav" />
+        <file name="boss-1-audio.m4a" />
+        <file name="boss-1-audio.ogg" />
+        <file name="boss-1-audio.wav" />
+        <file name="boss-2-audio.m4a" />
+        <file name="boss-2-audio.ogg" />
+        <file name="boss-2-audio.wav" />
+        <file name="boss-3-audio.m4a" />
+        <file name="boss-3-audio.ogg" />
+        <file name="boss-3-audio.wav" />
+        <file name="wave-1-audio.m4a" />
+        <file name="wave-1-audio.ogg" />
+        <file name="wave-1-audio.wav" />
+        <file name="wave-2-audio.m4a" />
+        <file name="wave-2-audio.ogg" />
+        <file name="wave-2-audio.wav" />
+        <file name="wave-3-audio.m4a" />
+        <file name="wave-3-audio.ogg" />
+        <file name="wave-3-audio.wav" />
+        <file name="wave-4-audio.m4a" />
+        <file name="wave-4-audio.ogg" />
+        <file name="wave-4-audio.wav" />
+        <file name="wave-5-audio.m4a" />
+        <file name="wave-5-audio.ogg" />
+        <file name="wave-5-audio.wav" />
+        <file name="ONEPAIR.m4a" />
+        <file name="ONEPAIR.ogg" />
+        <file name="ONEPAIR.wav" />
     </sounds-folder>
     <music-folder expanded="1" />
     <files-folder expanded="0">
