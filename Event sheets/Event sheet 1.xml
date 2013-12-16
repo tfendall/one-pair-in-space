@@ -537,5 +537,88 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <variable constant="1" name="DRONE_CIRCLE_SPEED" sid="1139560629416788" static="0" type="number">120</variable>
+        <variable constant="1" name="DRONE_CIRCLE_DISTANCE" sid="9249968425961828" static="0" type="number">45</variable>
+        <event-group description="" sid="4942832535149624" title="Drone Ability">
+            <sub-events>
+                <event-block sid="4861297341924405">
+                    <conditions>
+                        <condition id="6" name="On button pressed" sid="7290588006450331" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="2578167420237278" type="System">
+                            <param id="0" name="Object to create">Drone</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">Player2.ImagePointX(0)</param>
+                            <param id="3" name="Y">Player2.ImagePointY(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9690545893759464">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="9590446676307949" type="Drone">
+                            <param id="0" name="Object">Player</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8917167109545009" type="Drone">
+                            <param id="0" name="Instance variable">CirclingPlayer</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="4130431073094181" type="Drone">
+                            <param id="0" name="Speed">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="3871570474954894" type="Drone">
+                            <param id="0" name="Instance variable">CirclingPlayer</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="869624989994513">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="7560356847906091" type="System" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="278893588230792" type="Drone">
+                            <param id="0" name="Instance variable">CirclingPlayer</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="8467079875279502" type="Drone">
+                            <param id="0" name="Instance variable">CirclingAngle</param>
+                            <param id="1" name="Value">(Drone.CirclingAngle + dt*DRONE_CIRCLE_SPEED)%360</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="793577701872569" type="Drone">
+                            <param id="0" name="X">Player.X + sin(Drone.CirclingAngle)*DRONE_CIRCLE_DISTANCE</param>
+                            <param id="1" name="Y">Player.Y+ cos(Drone.CirclingAngle)*DRONE_CIRCLE_DISTANCE</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4480519353938299">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="6610407965604335" type="Drone">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">-Drone.Height*4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4041753048988952" type="Drone" />
+                    </actions>
+                </event-block>
+                <event-block sid="3266112201821072">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="5475003553806547" type="Drone">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="9288385173320187" type="Enemy">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">5</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
