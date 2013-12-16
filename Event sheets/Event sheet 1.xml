@@ -704,5 +704,142 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <variable constant="1" name="DIALOG_PAUSE_TIME" sid="6552068629347387" static="0" type="number">4</variable>
+        <event-group description="" sid="1609306543797418" title="Story and Dialogue" />
+        <event-block sid="7217554999824965">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1104546862139808" type="System" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="742271697617682" type="StoryText">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2074066363902153" type="StoryImg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Set text" sid="6142431450253981" type="StoryText">
+                    <param id="0" name="Text">&quot;Pilots.  We need you now more than ever.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="5088182422123576" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="0" name="Set text" sid="1584429007387193" type="StoryText">
+                    <param id="0" name="Text">&quot;After last week&apos;s snafu in responding to the civil disobedience in Sector 84,&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="1169027451995329" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="0" name="Set text" sid="1055822833744726" type="StoryText">
+                    <param id="0" name="Text">&quot;Planet Friendly is now the only habitable planet left in the WHOLE UNIVERSE!&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="6688688831149825" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="0" name="Set text" sid="7915917018929982" type="StoryText">
+                    <param id="0" name="Text">&quot;For our people to have any chance at survival, we must take over Planet Friendly.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="9742280213193425" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="0" name="Set text" sid="4573037398651592" type="StoryText">
+                    <param id="0" name="Text">&quot;Unfortunately, the selfish Friendlians are onto us, and are preparing to defend themselves.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="9582499510432097" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="0" name="Set text" sid="9193371245173127" type="StoryText">
+                    <param id="0" name="Text">&quot;You must destroy them and secure Planet Friendly for us.  We only have one shot.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="6257028761502428" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6697062801088268" type="StoryText">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5679378734936866" type="StoryImg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="806278633375343" type="System">
+                    <param id="0" name="Seconds">1.0</param>
+                </action>
+                <action id="4" name="Set animation" sid="9617637607844911" type="StoryImg">
+                    <param id="0" name="Animation">&quot;Player1&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7035391280263098" type="StoryText">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6268271984985294" type="StoryImg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="4" name="Set font color" sid="8789339022894476" type="StoryText">
+                    <param id="0" name="Color">rgb(255, 51, 0)</param>
+                </action>
+                <action id="0" name="Set text" sid="7703395574845062" type="StoryText">
+                    <param id="0" name="Text">&quot;Copy that, Mr. President.  Lock and load.  Let&apos;s kick some Friendly ass.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="3083598033720904" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7576274292281959" type="StoryImg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3616549351981067" type="StoryText">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="9427386514697837" type="System">
+                    <param id="0" name="Seconds">1.0</param>
+                </action>
+                <action id="4" name="Set animation" sid="8435211151631617" type="StoryImg">
+                    <param id="0" name="Animation">&quot;Player2&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2550002763455565" type="StoryText">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="266204307853208" type="StoryImg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="4" name="Set font color" sid="6093730719104095" type="StoryText">
+                    <param id="0" name="Color">rgb(33, 99, 0)</param>
+                </action>
+                <action id="0" name="Set text" sid="6977426517955751" type="StoryText">
+                    <param id="0" name="Text">&quot;But at what cost?  What, in the end, are we saving, if we sacrifce our humanity?&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="3586293627815138" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7616494701720552" type="StoryImg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4533425438825685" type="StoryText">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="3694575373124639" type="System">
+                    <param id="0" name="Seconds">1.0</param>
+                </action>
+                <action id="4" name="Set animation" sid="5083503309369365" type="StoryImg">
+                    <param id="0" name="Animation">&quot;Player1&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2055958336459304" type="StoryText">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9756251954690955" type="StoryImg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="4" name="Set font color" sid="1814517546890281" type="StoryText">
+                    <param id="0" name="Color">rgb(255, 51, 0)</param>
+                </action>
+                <action id="0" name="Set text" sid="3239025353824767" type="StoryText">
+                    <param id="0" name="Text">&quot;Save the philosophizing for the victory party, partner.  We&apos;ve got a planet to conquer.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="6633888836267385" type="System">
+                    <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                </action>
+                <action behavior="Fade" id="1" name="Start fade" sid="7655752543048254" type="StoryImg" />
+                <action behavior="Fade" id="1" name="Start fade" sid="9402349223756945" type="StoryText" />
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
