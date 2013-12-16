@@ -250,6 +250,8 @@
                         <health>10</health>
                         <IdleTime>0</IdleTime>
                         <isDead>false</isDead>
+                        <numDronesAvailable>3</numDronesAvailable>
+                        <maxDronesAvailable>3</maxDronesAvailable>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="BoundToLayout">
@@ -326,10 +328,10 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>380</x>
+                        <x>371</x>
                         <y>585</y>
                         <z>0</z>
-                        <width>30</width>
+                        <width>39</width>
                         <height>25</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>

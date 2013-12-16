@@ -11,18 +11,18 @@
     <saved-with-version>15200</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
         <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
-        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
-        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -191,6 +191,8 @@
                 <instance-variable name="health" sid="4170364823772381" type="number" />
                 <instance-variable comment="Record how long it&apos;s been since the player was controlled manually" name="IdleTime" sid="179150948800561" type="number" />
                 <instance-variable name="isDead" sid="4207271149785883" type="boolean" />
+                <instance-variable name="numDronesAvailable" sid="5512420023458561" type="number" />
+                <instance-variable name="maxDronesAvailable" sid="6312976683059857" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="BoundToLayout" sid="6586685561253555">
