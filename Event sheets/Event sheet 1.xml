@@ -131,7 +131,11 @@
                     <param id="0" name="Instance variable">Health</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="-9" name="Destroy" sid="898530252795106" type="Bullet" />
+                <action disabled="1" id="-9" name="Destroy" sid="898530252795106" type="Bullet" />
+                <action id="4" name="Set animation" sid="7153501193238231" type="Enemy">
+                    <param id="0" name="Animation">&quot;damaged&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="8211397968408667">
@@ -144,6 +148,16 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="1846316993516929" type="Enemy" />
+                <action id="25" name="Play at object" sid="3172630029785718" type="Audio">
+                    <param id="0" name="Audio file">small_splosion</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Enemy</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
         <comment>If an enemy bullet hits the player, just destroy the bullet.  TODO: player health!</comment>
@@ -155,6 +169,24 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="7143117870673165" type="EnemyBullet" />
+                <action id="-12" name="Subtract from" sid="8273483778750169" type="Player">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8034113915817586">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6910786976175389" type="EnemyBullet">
+                    <param id="0" name="Object">Player2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5926808676556814" type="EnemyBullet" />
+                <action id="-12" name="Subtract from" sid="7268792319190709" type="Player2">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Value">1</param>
+                </action>
             </actions>
         </event-block>
         <comment>Destroy any enemies which make it to the bottom of the screen and leave the layout.</comment>
@@ -168,16 +200,6 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="110969997790267" type="Enemy" />
-                <action id="25" name="Play at object" sid="3172630029785718" type="Audio">
-                    <param id="0" name="Audio file">small_splosion</param>
-                    <param id="1" name="Loop">0</param>
-                    <param id="2" name="Volume">0</param>
-                    <param id="3" name="Object">Enemy</param>
-                    <param id="4" name="Inner angle">360</param>
-                    <param id="5" name="Outer angle">360</param>
-                    <param id="6" name="Outer gain">0</param>
-                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
-                </action>
             </actions>
         </event-block>
         <comment>Destroy the initial star object in the layout.</comment>
@@ -288,10 +310,6 @@
                 <action behavior="8Direction" id="7" name="Simulate control" sid="3001479703474869" type="Player2">
                     <param id="0" name="Control">0</param>
                 </action>
-                <action id="-10" name="Set value" sid="1629593819329508" type="Player2">
-                    <param id="0" name="Instance variable">IdleTime</param>
-                    <param id="1" name="Value">0</param>
-                </action>
             </actions>
         </event-block>
         <event-block sid="5694034570381786">
@@ -306,10 +324,6 @@
             <actions>
                 <action behavior="8Direction" id="7" name="Simulate control" sid="4368871629619114" type="Player2">
                     <param id="0" name="Control">1</param>
-                </action>
-                <action id="-10" name="Set value" sid="4542136342545171" type="Player2">
-                    <param id="0" name="Instance variable">IdleTime</param>
-                    <param id="1" name="Value">0</param>
                 </action>
             </actions>
         </event-block>
@@ -326,10 +340,6 @@
                 <action behavior="8Direction" id="7" name="Simulate control" sid="7504624213956544" type="Player2">
                     <param id="0" name="Control">2</param>
                 </action>
-                <action id="-10" name="Set value" sid="2259660471273546" type="Player2">
-                    <param id="0" name="Instance variable">IdleTime</param>
-                    <param id="1" name="Value">0</param>
-                </action>
             </actions>
         </event-block>
         <event-block sid="3481397467531758">
@@ -345,10 +355,6 @@
                 <action behavior="8Direction" id="7" name="Simulate control" sid="3383439074787022" type="Player2">
                     <param id="0" name="Control">3</param>
                 </action>
-                <action id="-10" name="Set value" sid="5912246796509944" type="Player2">
-                    <param id="0" name="Instance variable">IdleTime</param>
-                    <param id="1" name="Value">0</param>
-                </action>
             </actions>
         </event-block>
         <event-block sid="3937999036792105">
@@ -359,61 +365,31 @@
                 <action id="0" name="Play" sid="4977118980570145" type="Audio">
                     <param id="0" name="Audio file">dododod</param>
                     <param id="2" name="Loop">1</param>
-                    <param id="3" name="Volume">0</param>
+                    <param id="3" name="Volume">20</param>
                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
         </event-block>
-        <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="4311760156946653" static="0" type="number">2</variable>
-        <event-group description="If stick is inactive, make the second ship follow the first ship" sid="7168927639839756" title="Auto Pilot">
-            <sub-events>
-                <event-block sid="7239340143530912">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="2484350883280269" type="System" />
-                        <condition id="5" name="Compare axis" sid="1408722695072208" type="Gamepad">
-                            <param id="0" name="Gamepad">0</param>
-                            <param id="1" name="Axis">2</param>
-                            <param id="2" name="Comparison">0</param>
-                            <param id="3" name="Value">0</param>
-                        </condition>
-                        <condition id="5" name="Compare axis" sid="9560509489794147" type="Gamepad">
-                            <param id="0" name="Gamepad">0</param>
-                            <param id="1" name="Axis">3</param>
-                            <param id="2" name="Comparison">0</param>
-                            <param id="3" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-11" name="Add to" sid="6412840344957328" type="Player2">
-                            <param id="0" name="Instance variable">IdleTime</param>
-                            <param id="1" name="Value">dt</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="9882678809466788">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="2529809145772593" type="System" />
-                        <condition id="-7" name="Compare instance variable" sid="6629681326183156" type="Player2">
-                            <param id="0" name="Instance variable">IdleTime</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" sid="5848974289934456" type="Player2">
-                            <param id="0" name="Instance variable">IdleTime</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Value">IDLE_TIME_BEFORE_AUTOPILOT</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="8Direction" id="9" name="Set vector X" sid="5865119605521166" type="Player2">
-                            <param id="0" name="Vector X">(Player.X - Player2.X)*4</param>
-                        </action>
-                        <action behavior="8Direction" id="10" name="Set vector Y" sid="8001877520442073" type="Player2">
-                            <param id="0" name="Vector Y">((Player.Y + Player.Height*1.5) - Player2.Y)*2</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
+        <event-block sid="3579062448909754">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="2856209479822469" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="7632434600044006" type="Text">
+                    <param id="0" name="Object">Player</param>
+                    <param id="1" name="Image point (optional)">2</param>
+                </action>
+                <action id="-4" name="Set position to another object" sid="1001509640158874" type="Text2">
+                    <param id="0" name="Object">Player2</param>
+                    <param id="1" name="Image point (optional)">2</param>
+                </action>
+                <action id="0" name="Set text" sid="5978172185841113" type="Text">
+                    <param id="0" name="Text">str(Player.health)</param>
+                </action>
+                <action id="0" name="Set text" sid="6292001338551395" type="Text2">
+                    <param id="0" name="Text">str(Player2.health)</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
