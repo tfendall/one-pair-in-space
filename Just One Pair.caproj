@@ -10,13 +10,13 @@
     <unique-id>2ajxfw52ycy8u</unique-id>
     <saved-with-version>15200</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
-        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -36,6 +36,7 @@
         <height>640</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
+    <first-layout>StartScreen</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -43,6 +44,8 @@
         <prop name="Fullscreen in browser">Letterbox scale</prop>
         <prop name="Hide address bar">No</prop>
         <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Portrait</prop>
+        <prop name="Pause on unfocus">Yes</prop>
         <prop name="Preview browser">Chrome</prop>
         <prop name="Sampling">Linear</prop>
         <prop name="Use iOS retina display">All devices</prop>
@@ -516,13 +519,40 @@
         <object-type name="Function" sid="7150048723471156">
             <plugin id="Function" />
         </object-type>
+        <object-type name="Title" sid="9384304344054755">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Controls" sid="2847610392486068">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="154031364196347" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.530928">
+                        <collision-poly>
+                            <point x="0.240964" y="0.115979" />
+                            <point x="0.5" y="0.185567" />
+                            <point x="0.623494" y="0.231959" />
+                            <point x="0.972892" y="0.530928" />
+                            <point x="0.78012" y="0.963918" />
+                            <point x="0.5" y="0.801546" />
+                            <point x="0.361446" y="0.842784" />
+                            <point x="0.0331325" y="0.530928" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Instruction" sid="5944498154263661">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
         <layout>Layout 1.xml</layout>
+        <layout>StartScreen.xml</layout>
     </layout-folder>
     <event-folder expanded="1">
         <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>Event sheet 2.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Gamepad" uid="8">
@@ -546,7 +576,7 @@
             </properties>
         </global-instance>
         <global-instance type="Keyboard" uid="6" />
-        <global-instance type="Function" uid="12" />
+        <global-instance type="Function" uid="14" />
     </global-instances>
     <sounds-folder expanded="1">
         <file name="dododod.m4a" />
