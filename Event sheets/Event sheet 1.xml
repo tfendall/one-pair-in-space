@@ -3,6 +3,18 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
+        <comment>Destroy initial star and enemy objects</comment>
+        <event-block sid="1506684333260076">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1522249601025953" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="2244997849851074" type="RedEnemy" />
+                <action id="-9" name="Destroy" sid="2179144340759331" type="Star" />
+                <action id="-9" name="Destroy" sid="4903760931498868" type="CircleEnemy" />
+                <action id="-9" name="Destroy" sid="8322706523668955" type="Drone" />
+            </actions>
+        </event-block>
         <variable constant="0" name="WaveMultiplier" sid="7950187726879294" static="0" type="number">1</variable>
         <comment>If the player is touching the screen, move towards the touch position.  Only move the player if they are further away from the touch than it is going to move - this avoids an unpleasent jittering when reaching the touch position.</comment>
         <event-block sid="6073296842764159">
@@ -47,49 +59,6 @@
             </actions>
         </event-block>
         <comment>Make a random enemy shoot every 1 second.</comment>
-        <event-block disabled="1" sid="7638711388050471">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="5970043854231369" type="System">
-                    <param id="0" name="Interval (seconds)">random(0.3,2/WaveMultiplier)</param>
-                </condition>
-                <condition id="-16" name="Pick random instance" sid="36882639353252" type="System">
-                    <param id="0" name="Object">Enemy</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="5657284414868353" type="Enemy">
-                    <param id="0" name="Object">EnemyBullet</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-                <action behavior="Bullet" id="0" name="Set speed" sid="3927596062630054" type="EnemyBullet">
-                    <param id="0" name="Speed">200*WaveMultiplier</param>
-                </action>
-            </actions>
-        </event-block>
-        <comment>Every 2 seconds make a new enemy spawn at a random horizontal position at the top of the screen.</comment>
-        <event-block disabled="1" sid="1992624714236339">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="4654092486844458" type="System">
-                    <param id="0" name="Interval (seconds)">random(1,4/WaveMultiplier)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="5636572497815455" type="System">
-                    <param id="0" name="Object to create">Enemy</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="X">random(30, 450)</param>
-                    <param id="3" name="Y">-20</param>
-                </action>
-                <action behavior="Bullet" id="0" name="Set speed" sid="1731637005200847" type="Enemy">
-                    <param id="0" name="Speed">WaveMultiplier*40</param>
-                </action>
-                <action id="4" name="Set animation" sid="5548825747269737" type="Enemy">
-                    <param id="0" name="Animation">choose(&quot;Circle&quot;, &quot;Red&quot;, &quot;Jet&quot;)</param>
-                    <param id="1" name="From">1</param>
-                </action>
-            </actions>
-        </event-block>
         <comment>If any enemies are above the player, make the player automatically shoot 10 times a second.</comment>
         <event-block sid="1508400842182784">
             <conditions>
@@ -182,47 +151,6 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <comment>If a player bullet hits an enemy, subtract 1 from their health.  If the enemy runs out of health, destroy it.</comment>
-        <event-block sid="379893924002785">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="7298637217365004" type="Bullet">
-                    <param id="0" name="Object">Enemy</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-12" name="Subtract from" sid="3067123904965754" type="Enemy">
-                    <param id="0" name="Instance variable">Health</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-                <action disabled="1" id="-9" name="Destroy" sid="898530252795106" type="Bullet" />
-                <action id="4" name="Set animation" sid="7153501193238231" type="Enemy">
-                    <param id="0" name="Animation">&quot;damaged&quot;</param>
-                    <param id="1" name="From">1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="8211397968408667">
-            <conditions>
-                <condition id="-7" name="Compare instance variable" sid="2818518150593958" type="Enemy">
-                    <param id="0" name="Instance variable">Health</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Value">0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Destroy" sid="1846316993516929" type="Enemy" />
-                <action id="25" name="Play at object" sid="3172630029785718" type="Audio">
-                    <param id="0" name="Audio file">small_splosion</param>
-                    <param id="1" name="Loop">0</param>
-                    <param id="2" name="Volume">0</param>
-                    <param id="3" name="Object">Enemy</param>
-                    <param id="4" name="Inner angle">360</param>
-                    <param id="5" name="Outer angle">360</param>
-                    <param id="6" name="Outer gain">0</param>
-                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-            </actions>
-        </event-block>
         <comment>If an enemy bullet hits the player, just destroy the bullet.</comment>
         <event-block sid="5803365796019762">
             <conditions>
@@ -302,28 +230,7 @@
                 </action>
             </actions>
         </event-block>
-        <comment>Destroy any enemies which make it to the bottom of the screen and leave the layout.</comment>
-        <event-block sid="1110148991420708">
-            <conditions>
-                <condition id="-2" name="Compare Y" sid="7649822534221979" type="Enemy">
-                    <param id="0" name="Comparison">5</param>
-                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
-                </condition>
-                <condition id="-4" name="Is outside layout" sid="9331663998129227" type="Enemy" />
-            </conditions>
-            <actions>
-                <action id="-9" name="Destroy" sid="110969997790267" type="Enemy" />
-            </actions>
-        </event-block>
         <comment>Destroy the initial star object in the layout.</comment>
-        <event-block sid="1962933146967913">
-            <conditions>
-                <condition id="-2" name="On start of layout" sid="8152208617927243" type="System" />
-            </conditions>
-            <actions>
-                <action id="-9" name="Destroy" sid="2405475707592166" type="Star" />
-            </actions>
-        </event-block>
         <comment>Create 50 random stars with different speeds and sizes on startup to create a space background effect.  The stars have a wrap behavior which keeps them on-screen.</comment>
         <event-block sid="5485387986874201">
             <conditions>
@@ -563,7 +470,7 @@
                 <action id="-9" name="Destroy" sid="7611634465320942" type="Player2" />
             </actions>
         </event-block>
-        <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">2</variable>
+        <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">1</variable>
         <event-group description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
             <sub-events>
                 <event-block sid="7239340143530912">
@@ -721,50 +628,6 @@
         </event-group>
         <event-group description="" sid="5745410259253815" title="Circle Enemy">
             <sub-events>
-                <event-block sid="5712404028506611">
-                    <conditions>
-                        <condition id="-6" name="Every X seconds" sid="8825494621787155" type="System">
-                            <param id="0" name="Interval (seconds)">random(2,3)</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="2604391980081059">
-                            <conditions>
-                                <condition id="-13" name="Pick nth instance" sid="3840087011443066" type="System">
-                                    <param id="0" name="Object">CircleEnemy</param>
-                                    <param id="1" name="Instance">0</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                        </event-block>
-                        <event-block sid="4218668864532388">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="5715553064651076" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="5133531635281204" type="System">
-                                    <param id="0" name="Object to create">CircleEnemy</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="X">random(80,120)</param>
-                                    <param id="3" name="Y">-20</param>
-                                </action>
-                                <action id="-3" name="Create object" sid="1113706505764727" type="System">
-                                    <param id="0" name="Object to create">CircleEnemy</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="X">random(220,260)</param>
-                                    <param id="3" name="Y">-20</param>
-                                </action>
-                                <action id="-3" name="Create object" sid="4381290525244261" type="System">
-                                    <param id="0" name="Object to create">CircleEnemy</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="X">random(370,410)</param>
-                                    <param id="3" name="Y">-20</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
                 <event-block sid="6170084757166501">
                     <conditions>
                         <condition id="-24" name="For Each (ordered)" sid="5647929289123244" type="System">
@@ -1658,6 +1521,9 @@
                                     <param id="2" name="X">-50</param>
                                     <param id="3" name="Y">140</param>
                                 </action>
+                                <action behavior="Turret" id="7" name="Set rate of fire" sid="6844691564916796" type="RedEnemy">
+                                    <param id="0" name="Rate of fire">random(1,4)</param>
+                                </action>
                                 <action behavior="Turret" id="1" name="Add object to target" sid="3684302413145236" type="RedEnemy">
                                     <param id="0" name="Target">Player</param>
                                 </action>
@@ -1667,20 +1533,6 @@
                             </actions>
                         </event-block>
                     </sub-events>
-                </event-block>
-                <event-block sid="8249527046568109">
-                    <conditions>
-                        <condition id="-2" name="On start of layout" sid="7535568125101566" type="System" />
-                    </conditions>
-                    <actions>
-                        <action id="-16" name="Wait" sid="7868655482140339" type="System">
-                            <param id="0" name="Seconds">2</param>
-                        </action>
-                        <action id="0" name="Call function" sid="7623317349475112" type="Function">
-                            <param id="0" name="Name">&quot;SpawnRedEnemyGroup&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                    </actions>
                 </event-block>
                 <event-block sid="3607354902592888">
                     <conditions>
@@ -1802,5 +1654,168 @@
                 </action>
             </actions>
         </event-block>
+        <variable constant="1" name="WAVES_TIL_BOSS" sid="6849353923457317" static="0" type="number">10</variable>
+        <variable constant="0" name="waves_completed" sid="4731828399344127" static="0" type="number">0</variable>
+        <event-group description="" sid="8419909423401627" title="Enemy Wave Scripting">
+            <sub-events>
+                <event-block sid="8042009404432017">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="3951856368771369" type="System">
+                            <param id="0" name="Interval (seconds)">random(2,3)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="556135191872833">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="6684210087348539" type="System">
+                                    <param id="0" name="Object">CircleEnemy</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="6835696840987736">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="9183064495240562" type="System" />
+                                <condition id="-14" name="Compare variable" sid="4623536641041014" type="System">
+                                    <param id="0" name="Variable">waves_completed</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">WAVES_TIL_BOSS</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="6223829717196987" type="System">
+                                    <param id="0" name="Object to create">CircleEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">random(80,120)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="1788261255799993" type="System">
+                                    <param id="0" name="Object to create">CircleEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">random(220,260)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="3160635099356439" type="System">
+                                    <param id="0" name="Object to create">CircleEnemy</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">random(370,410)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="6468718873010156" type="System">
+                                    <param id="0" name="Variable">waves_completed</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="965869789627078">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="3845179767267103" type="System">
+                            <param id="0" name="Interval (seconds)">random(2,7)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8764935335374164">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="4473285523741378" type="System">
+                                    <param id="0" name="Object">RedEnemy</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="2657674079017424">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7031164237661755" type="System" />
+                                <condition id="-14" name="Compare variable" sid="914106022399634" type="System">
+                                    <param id="0" name="Variable">waves_completed</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">WAVES_TIL_BOSS</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="5005429629994103" type="Function">
+                                    <param id="0" name="Name">&quot;SpawnRedEnemyGroup&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="-10" name="Add to" sid="7478934983716556" type="System">
+                                    <param id="0" name="Variable">waves_completed</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7362327092819324">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="704581407313261" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7934890675227913">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3733362837388354" type="System">
+                                    <param id="0" name="Variable">waves_completed</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">WAVES_TIL_BOSS</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="3096517579868738">
+                                    <conditions>
+                                        <condition id="-13" name="Pick nth instance" sid="895448439753283" type="System">
+                                            <param id="0" name="Object">CircleEnemy</param>
+                                            <param id="1" name="Instance">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="5083107451442023">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="3656604966330749" type="System" />
+                                        <condition id="-13" name="Pick nth instance" sid="6188833947265988" type="System">
+                                            <param id="0" name="Object">RedEnemy</param>
+                                            <param id="1" name="Instance">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="1028864861499881">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="9832455436777561" type="System" />
+                                        <condition id="-13" name="Pick nth instance" sid="8935565294837752" type="System">
+                                            <param id="0" name="Object">TinyCircle</param>
+                                            <param id="1" name="Instance">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="909154076593165">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="1292629124339618" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="3294215731398941" type="StoryText">
+                                            <param id="0" name="Text">&quot;BOSS!!!&quot;</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="41238238373014" type="StoryText">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-16" name="Set opacity" sid="5399669299921647" type="StoryText">
+                                            <param id="0" name="Opacity">100</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
