@@ -1668,7 +1668,7 @@
                 </action>
             </actions>
         </event-block>
-        <variable constant="1" name="WAVES_TIL_BOSS" sid="6849353923457317" static="0" type="number">4</variable>
+        <variable constant="1" name="WAVES_TIL_BOSS" sid="6849353923457317" static="0" type="number">20</variable>
         <variable comment="starting at -2 because it gets inceremented for the first wave of each type" constant="0" name="waves_completed" sid="4731828399344127" static="0" type="number">-2</variable>
         <variable constant="0" name="has_boss_been_spawned" sid="6842620328772442" static="0" type="number">0</variable>
         <event-group description="" sid="8419909423401627" title="Enemy Wave Scripting">
