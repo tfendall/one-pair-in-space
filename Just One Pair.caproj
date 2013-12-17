@@ -27,6 +27,7 @@
         <behavior author="Scirra" id="Turret" version="1">Turret</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="lunarray" id="lunarray_LiteTween" version="1">LiteTween</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
         <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
     </used-behaviors>
@@ -40,7 +41,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <first-layout>StartScreen</first-layout>
-    <use-loader-layout>0</use-loader-layout>
+    <use-loader-layout>1</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
         <prop name="Enable WebGL">On</prop>
@@ -761,6 +762,9 @@
                 <behavior-type name="Rotate" sid="40345784919216">
                     <behavior id="Sin" />
                 </behavior-type>
+                <behavior-type name="Turret" sid="862848403863408">
+                    <behavior id="Turret" />
+                </behavior-type>
             </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="8" loop="1" name="Circle" pingpong="0" repeatcount="1" repeatto="0" sid="151335597112531" speed="5">
@@ -1043,6 +1047,53 @@
                             <point x="0.5" y="0.678333" />
                             <point x="0.40625" y="0.675" />
                             <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Boss" sid="5809796808078588">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="health" sid="645728144676408" type="number" />
+                <instance-variable name="is_active" sid="5556295441974394" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="LiteTween" sid="2906828711985089">
+                    <behavior id="lunarray_LiteTween" />
+                </behavior-type>
+                <behavior-type name="Sine" sid="9634012979434801">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="BossDefault" pingpong="0" repeatcount="1" repeatto="0" sid="8028560856715704" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0976563" y="0.0976563" />
+                            <point x="0.5" y="0.183594" />
+                            <point x="0.820313" y="0.179688" />
+                            <point x="0.957031" y="0.5" />
+                            <point x="0.851563" y="0.851563" />
+                            <point x="0.5" y="0.945313" />
+                            <point x="0.0859375" y="0.914063" />
+                            <point x="0.0625" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="BossActive" pingpong="0" repeatcount="1" repeatto="0" sid="5969723267909382" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="BigGun" x="0.0351563" y="0.910156" />
+                        <image-point name="LittleGunLeft" x="0.328125" y="0.949219" />
+                        <image-point name="LittleGunRight" x="0.851563" y="0.933594" />
+                        <collision-poly>
+                            <point x="0.464844" y="0.457031" />
+                            <point x="0.574219" y="0.402344" />
+                            <point x="0.671875" y="0.421875" />
+                            <point x="0.742188" y="0.492188" />
+                            <point x="0.675781" y="0.566406" />
+                            <point x="0.535156" y="0.578125" />
+                            <point x="0.453125" y="0.511719" />
                         </collision-poly>
                     </frame>
                 </animation>

@@ -13,6 +13,7 @@
                 <action id="-9" name="Destroy" sid="2179144340759331" type="Star" />
                 <action id="-9" name="Destroy" sid="4903760931498868" type="CircleEnemy" />
                 <action id="-9" name="Destroy" sid="8322706523668955" type="Drone" />
+                <action id="-9" name="Destroy" sid="8889128675124853" type="Boss" />
             </actions>
         </event-block>
         <variable constant="0" name="WaveMultiplier" sid="7950187726879294" static="0" type="number">1</variable>
@@ -471,7 +472,7 @@
             </actions>
         </event-block>
         <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">1</variable>
-        <event-group description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
+        <event-group collapsed="1" description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
             <sub-events>
                 <event-block sid="7239340143530912">
                     <conditions>
@@ -524,7 +525,7 @@
         </event-group>
         <variable constant="1" name="DRONE_CIRCLE_SPEED" sid="1139560629416788" static="0" type="number">120</variable>
         <variable constant="1" name="DRONE_CIRCLE_DISTANCE" sid="9249968425961828" static="0" type="number">45</variable>
-        <event-group description="" sid="4942832535149624" title="Drone Ability">
+        <event-group collapsed="1" description="" sid="4942832535149624" title="Drone Ability">
             <sub-events>
                 <event-block sid="4861297341924405">
                     <conditions>
@@ -693,6 +694,7 @@
                         <condition id="-16" name="Pick random instance" sid="4105292838619179" type="System">
                             <param id="0" name="Object">TinyCircle</param>
                         </condition>
+                        <condition behavior="Turret" id="0" inverted="1" name="Has target" sid="3535929994352495" type="TinyCircle" />
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" sid="1761002821128113" type="TinyCircle">
@@ -848,6 +850,18 @@
                             <param id="5" name="Outer angle">360</param>
                             <param id="6" name="Outer gain">0</param>
                             <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8855052189197937">
+                    <conditions>
+                        <condition behavior="Turret" id="1" name="On shoot" sid="9821223119083237" type="TinyCircle" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="716694976382974" type="TinyCircle">
+                            <param id="0" name="Object">EnemyBullet</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1495,7 +1509,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-group description="" sid="7134856238278004" title="Red Enemies">
+        <event-group collapsed="1" description="" sid="7134856238278004" title="Red Enemies">
             <sub-events>
                 <event-block sid="2691140101698209">
                     <conditions>
@@ -1654,8 +1668,9 @@
                 </action>
             </actions>
         </event-block>
-        <variable constant="1" name="WAVES_TIL_BOSS" sid="6849353923457317" static="0" type="number">10</variable>
-        <variable constant="0" name="waves_completed" sid="4731828399344127" static="0" type="number">0</variable>
+        <variable constant="1" name="WAVES_TIL_BOSS" sid="6849353923457317" static="0" type="number">4</variable>
+        <variable comment="starting at -2 because it gets inceremented for the first wave of each type" constant="0" name="waves_completed" sid="4731828399344127" static="0" type="number">-2</variable>
+        <variable constant="0" name="has_boss_been_spawned" sid="6842620328772442" static="0" type="number">0</variable>
         <event-group description="" sid="8419909423401627" title="Enemy Wave Scripting">
             <sub-events>
                 <event-block sid="8042009404432017">
@@ -1753,67 +1768,183 @@
                 <event-block sid="7362327092819324">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="704581407313261" type="System" />
+                        <condition id="-14" name="Compare variable" sid="4741882684025423" type="System">
+                            <param id="0" name="Variable">waves_completed</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">WAVES_TIL_BOSS</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="6428287356082465" type="System">
+                            <param id="0" name="Variable">has_boss_been_spawned</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="7934890675227913">
+                        <event-block sid="3096517579868738">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="3733362837388354" type="System">
-                                    <param id="0" name="Variable">waves_completed</param>
-                                    <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Value">WAVES_TIL_BOSS</param>
+                                <condition id="-13" name="Pick nth instance" sid="895448439753283" type="System">
+                                    <param id="0" name="Object">CircleEnemy</param>
+                                    <param id="1" name="Instance">0</param>
                                 </condition>
                             </conditions>
                             <actions />
-                            <sub-events>
-                                <event-block sid="3096517579868738">
-                                    <conditions>
-                                        <condition id="-13" name="Pick nth instance" sid="895448439753283" type="System">
-                                            <param id="0" name="Object">CircleEnemy</param>
-                                            <param id="1" name="Instance">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                </event-block>
-                                <event-block sid="5083107451442023">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="3656604966330749" type="System" />
-                                        <condition id="-13" name="Pick nth instance" sid="6188833947265988" type="System">
-                                            <param id="0" name="Object">RedEnemy</param>
-                                            <param id="1" name="Instance">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                </event-block>
-                                <event-block sid="1028864861499881">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="9832455436777561" type="System" />
-                                        <condition id="-13" name="Pick nth instance" sid="8935565294837752" type="System">
-                                            <param id="0" name="Object">TinyCircle</param>
-                                            <param id="1" name="Instance">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                </event-block>
-                                <event-block sid="909154076593165">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="1292629124339618" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Set text" sid="3294215731398941" type="StoryText">
-                                            <param id="0" name="Text">&quot;BOSS!!!&quot;</param>
-                                        </action>
-                                        <action id="-15" name="Set visible" sid="41238238373014" type="StoryText">
-                                            <param id="0" name="Visibility">1</param>
-                                        </action>
-                                        <action id="-16" name="Set opacity" sid="5399669299921647" type="StoryText">
-                                            <param id="0" name="Opacity">100</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
+                        </event-block>
+                        <event-block sid="5083107451442023">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="3656604966330749" type="System" />
+                                <condition id="-13" name="Pick nth instance" sid="6188833947265988" type="System">
+                                    <param id="0" name="Object">RedEnemy</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="1028864861499881">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="9832455436777561" type="System" />
+                                <condition id="-13" name="Pick nth instance" sid="8935565294837752" type="System">
+                                    <param id="0" name="Object">TinyCircle</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="909154076593165">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="1292629124339618" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="2916414642820818" type="System">
+                                    <param id="0" name="Object to create">Boss</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">LayoutWidth/2</param>
+                                    <param id="3" name="Y">-Boss.Height</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="8473370392400548" type="System">
+                                    <param id="0" name="Variable">has_boss_been_spawned</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="2441829188137789" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4882932908336828" type="Boss">
+                                    <param id="0" name="Instance variable">is_active</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="2556972804156064" type="Boss">
+                                    <param id="0" name="Animation">&quot;BossActive&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="Sine" id="0" name="Set active" sid="302442726940205" type="Boss">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="307546369327081" title="Boss">
+            <sub-events>
+                <event-block sid="7765653759947455">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="7474449962341954" type="Boss">
+                            <param id="0" name="Instance variable">is_active</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="746635561598172">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="43773445819211" type="System">
+                                    <param id="0" name="Interval (seconds)">random(2,4)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="6146269525354579" type="Boss">
+                                    <param id="0" name="Object">TinyCircle</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">&quot;BigGun&quot;</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="9821254955782814" type="TinyCircle">
+                                    <param id="0" name="Angle">90</param>
+                                </action>
+                                <action behavior="Turret" id="5" name="Set enabled" sid="9626354652192507" type="TinyCircle">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                                <action behavior="Turret" id="1" name="Add object to target" sid="9142595179259922" type="TinyCircle">
+                                    <param id="0" name="Target">Player</param>
+                                </action>
+                                <action behavior="Turret" id="1" name="Add object to target" sid="8446529595715244" type="TinyCircle">
+                                    <param id="0" name="Target">Player2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9111209558272937">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="544702380046448" type="System">
+                                    <param id="0" name="Interval (seconds)">random(0.2,1)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="7484632958071542" type="Boss">
+                                    <param id="0" name="Object">EnemyBullet</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">choose(&quot;LittleGunLeft&quot;,&quot;LittleGunRight&quot;)</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="1678651941503599" type="EnemyBullet">
+                                    <param id="0" name="Angle">90</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4340861175279458">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="286798780106652" type="Bullet">
+                                    <param id="0" name="Object">Boss</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" sid="8665623070555342" type="Boss">
+                                    <param id="0" name="Instance variable">health</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="63918405713202" type="Boss">
+                                    <param id="0" name="Opacity">20</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="3947538354529031" type="System">
+                                    <param id="0" name="Seconds">0.05</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="7006156029837475" type="Boss">
+                                    <param id="0" name="Opacity">100</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="6547843770841315" type="System">
+                                    <param id="0" name="Seconds">0.05</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="4066227481845929" type="Boss">
+                                    <param id="0" name="Opacity">20</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="6199123172149316" type="System">
+                                    <param id="0" name="Seconds">0.05</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="5924111430563808" type="Boss">
+                                    <param id="0" name="Opacity">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="1293483670545291">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="2174036201338205" type="Boss">
+                            <param id="0" name="Instance variable">health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="6957843960152855" type="Boss" />
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
