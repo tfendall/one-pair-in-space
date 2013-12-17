@@ -719,7 +719,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <variable constant="1" name="DIALOG_PAUSE_TIME" sid="6552068629347387" static="0" type="number">4</variable>
         <event-group description="" sid="5745410259253815" title="Circle Enemy">
             <sub-events>
                 <event-block sid="5712404028506611">
@@ -991,61 +990,75 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="1609306543797418" title="Story and Dialogue">
+        <variable constant="1" name="DIALOG_PAUSE_TIME" sid="6552068629347387" static="0" type="number">6</variable>
+        <event-group description="" sid="1609306543797418" title="Story and Dialogue">
             <sub-events>
-                <event-block sid="7217554999824965">
+                <event-block sid="4566980601521311">
                     <conditions>
-                        <condition id="-2" name="On start of layout" sid="1104546862139808" type="System" />
+                        <condition id="-2" name="On start of layout" sid="4365821701966716" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" sid="742271697617682" type="StoryText">
-                            <param id="0" name="Visibility">1</param>
+                        <action id="-13" name="Set boolean" sid="1603512783757321" type="PlanetFriendly">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="2074066363902153" type="StoryImg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7217554999824965">
+                    <conditions>
+                        <condition id="0" name="On function" sid="1104546862139808" type="Function">
+                            <param id="0" name="Name">&quot;StoryOpening&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
                         <action id="0" name="Set text" sid="6142431450253981" type="StoryText">
                             <param id="0" name="Text">&quot;Pilots.  We need you now more than ever.&quot;</param>
                         </action>
+                        <action id="4" name="Set animation" sid="8760223651342967" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="4554381239026491" type="StoryImg" />
+                        <action behavior="Fade" id="0" name="Restart fade" sid="2041985305087678" type="StoryText" />
                         <action id="-16" name="Wait" sid="5088182422123576" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
                         <action id="0" name="Set text" sid="1584429007387193" type="StoryText">
                             <param id="0" name="Text">&quot;After last week&apos;s snafu in responding to the civil disobedience in Sector 84,&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7081279461073594" type="StoryText" />
                         <action id="-16" name="Wait" sid="1169027451995329" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
                         <action id="0" name="Set text" sid="1055822833744726" type="StoryText">
                             <param id="0" name="Text">&quot;Planet Friendly is now the only habitable planet left in the WHOLE UNIVERSE!&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="5903969401908245" type="StoryText" />
                         <action id="-16" name="Wait" sid="6688688831149825" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
                         <action id="0" name="Set text" sid="7915917018929982" type="StoryText">
                             <param id="0" name="Text">&quot;For our people to have any chance at survival, we must take over Planet Friendly.&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="4066527753740127" type="StoryText" />
                         <action id="-16" name="Wait" sid="9742280213193425" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
                         <action id="0" name="Set text" sid="4573037398651592" type="StoryText">
                             <param id="0" name="Text">&quot;Unfortunately, the selfish Friendlians are onto us, and are preparing to defend themselves.&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="9808462650579625" type="StoryText" />
                         <action id="-16" name="Wait" sid="9582499510432097" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
                         <action id="0" name="Set text" sid="9193371245173127" type="StoryText">
                             <param id="0" name="Text">&quot;You must destroy them and secure Planet Friendly for us.  We only have one shot.&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="1458419872493742" type="StoryText" />
                         <action id="-16" name="Wait" sid="6257028761502428" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="6697062801088268" type="StoryText">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="5679378734936866" type="StoryImg">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="5679378734936866" type="StoryImg" />
                         <action id="-16" name="Wait" sid="806278633375343" type="System">
                             <param id="0" name="Seconds">1.0</param>
                         </action>
@@ -1053,27 +1066,18 @@
                             <param id="0" name="Animation">&quot;Player1&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="7035391280263098" type="StoryText">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="6268271984985294" type="StoryImg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="6268271984985294" type="StoryImg" />
                         <action id="4" name="Set font color" sid="8789339022894476" type="StoryText">
                             <param id="0" name="Color">rgb(255, 51, 0)</param>
                         </action>
                         <action id="0" name="Set text" sid="7703395574845062" type="StoryText">
                             <param id="0" name="Text">&quot;Copy that, Mr. President.  Lock and load.  Let&apos;s kick some Friendly ass.&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7035391280263098" type="StoryText" />
                         <action id="-16" name="Wait" sid="3083598033720904" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="7576274292281959" type="StoryImg">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="3616549351981067" type="StoryText">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="1581967447413094" type="StoryImg" />
                         <action id="-16" name="Wait" sid="9427386514697837" type="System">
                             <param id="0" name="Seconds">1.0</param>
                         </action>
@@ -1081,27 +1085,18 @@
                             <param id="0" name="Animation">&quot;Player2&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="2550002763455565" type="StoryText">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="266204307853208" type="StoryImg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="427383800955217" type="StoryImg" />
                         <action id="4" name="Set font color" sid="6093730719104095" type="StoryText">
                             <param id="0" name="Color">rgb(33, 99, 0)</param>
                         </action>
                         <action id="0" name="Set text" sid="6977426517955751" type="StoryText">
                             <param id="0" name="Text">&quot;But at what cost?  What, in the end, are we saving, if we sacrifce our humanity?&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="1889315207356978" type="StoryText" />
                         <action id="-16" name="Wait" sid="3586293627815138" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="7616494701720552" type="StoryImg">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="4533425438825685" type="StoryText">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="8664837809828781" type="StoryImg" />
                         <action id="-16" name="Wait" sid="3694575373124639" type="System">
                             <param id="0" name="Seconds">1.0</param>
                         </action>
@@ -1109,23 +1104,514 @@
                             <param id="0" name="Animation">&quot;Player1&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="2055958336459304" type="StoryText">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="9756251954690955" type="StoryImg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="4130845391095348" type="StoryImg" />
                         <action id="4" name="Set font color" sid="1814517546890281" type="StoryText">
                             <param id="0" name="Color">rgb(255, 51, 0)</param>
                         </action>
                         <action id="0" name="Set text" sid="3239025353824767" type="StoryText">
                             <param id="0" name="Text">&quot;Save the philosophizing for the victory party, partner.  We&apos;ve got a planet to conquer.&quot;</param>
                         </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="995649575641618" type="StoryText" />
                         <action id="-16" name="Wait" sid="6633888836267385" type="System">
                             <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
                         </action>
-                        <action behavior="Fade" id="1" name="Start fade" sid="7655752543048254" type="StoryImg" />
-                        <action behavior="Fade" id="1" name="Start fade" sid="9402349223756945" type="StoryText" />
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="1073802900563093" type="StoryImg" />
+                    </actions>
+                </event-block>
+                <event-block sid="2814236862084486">
+                    <conditions>
+                        <condition id="0" name="On function" sid="7502364409036387" type="Function">
+                            <param id="0" name="Name">&quot;StoryBossIntro&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set font color" sid="6107090410935369" type="StoryText">
+                            <param id="0" name="Color">rgb(28, 121, 226)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3557531024794364" type="StoryText">
+                            <param id="0" name="Text">&quot;Please! Please! Hold your fire!&quot;</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="307477103003154" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Ambassador&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="8175314603812568" type="StoryImg" />
+                        <action behavior="Fade" id="0" name="Restart fade" sid="732661868754221" type="StoryText" />
+                        <action id="-16" name="Wait" sid="8311057369287009" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="4385342459883789" type="StoryText">
+                            <param id="0" name="Text">&quot;We can resolve this peacefully.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="6891589943801957" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6707780209649645" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1500219588288174" type="StoryText">
+                            <param id="0" name="Text">&quot;Planet Friendly has an abundance of wildlife and vegetation.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7609721389838248" type="StoryText" />
+                        <action id="-16" name="Wait" sid="2913939275933613" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2347428854630953" type="StoryText">
+                            <param id="0" name="Text">&quot;If we work together, surely we can all share in its many resources.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="6782494293426522" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6312097382300395" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="5054142757215629" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="3805772710037152" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="9400955660592049" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player1&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="4787453219000231" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="7142988774530666" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 51, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="6904636596640524" type="StoryText">
+                            <param id="0" name="Text">&quot;How stupid do you think we are, Ambassador Pleasant? We&apos;ve heard that one before.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="4481645549329234" type="StoryText" />
+                        <action id="-16" name="Wait" sid="3392351851442028" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="4778634452545293" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="2369061653027728" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="8130646587551307" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player2&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="656763208654969" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="5467771408003777" type="StoryText">
+                            <param id="0" name="Color">rgb(33, 99, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3814908213282677" type="StoryText">
+                            <param id="0" name="Text">&quot;To be fair, we&apos;ve never actually taken anyone up on it.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="5302601430859215" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6024063203849365" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="4965400598854226" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="267359992325189" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="4942378157335518" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Ambassador&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="9019916584834152" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="2625988305711192" type="StoryText">
+                            <param id="0" name="Color">rgb(28, 121, 226)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="7507848215462167" type="StoryText">
+                            <param id="0" name="Text">&quot;Oh please! The citizens of Planet Friendly are a peaceful people.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="9017676276732443" type="StoryText" />
+                        <action id="-16" name="Wait" sid="5031176861113052" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2713957709682283" type="StoryText">
+                            <param id="0" name="Text">&quot;If this is truly the last hope for life in the galaxy,&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="1326924081624199" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6021033350267066" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="7129336969356043" type="StoryText">
+                            <param id="0" name="Text">&quot;isn&apos;t it finally time we set aside the old ways of war and come together in unity?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="5332210780684491" type="StoryText" />
+                        <action id="-16" name="Wait" sid="8190083980213864" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="4955820947181906" type="StoryText">
+                            <param id="0" name="Text">&quot;Think of our children, and your children. What kind of universe do you want to pass on to them?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="8619224542698763" type="StoryText" />
+                        <action id="-16" name="Wait" sid="7575531190534324" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="6214255836247346" type="StoryText">
+                            <param id="0" name="Text">&quot;And to their children? And their children&apos;s children?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="9398986531477854" type="StoryText" />
+                        <action id="-16" name="Wait" sid="3153477635164325" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3057373927830632" type="StoryText">
+                            <param id="0" name="Text">&quot;We can end the violence here and now, and start anew as one unified people.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="2856415084783081" type="StoryText" />
+                        <action id="-16" name="Wait" sid="5329292587583841" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="829638887298551" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="57580803283192" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="3058033833188811" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player2&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="9099697993330152" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="6021508554606693" type="StoryText">
+                            <param id="0" name="Color">rgb(33, 99, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="7620114569341083" type="StoryText">
+                            <param id="0" name="Text">&quot;My God. To think we could actually end the cycle of violence if we just came together.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="8007694741707952" type="StoryText" />
+                        <action id="-16" name="Wait" sid="1900330757785913" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3973889504702127" type="StoryText">
+                            <param id="0" name="Text">&quot;Could this truly be the moment we turn the page to a peaceful co-existence?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="365951789489187" type="StoryText" />
+                        <action id="-16" name="Wait" sid="9154112650683313" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="2249031545989558" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="1000582499080936" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="5278036223229068" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="1534095468783724" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="7414622174824717" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 102, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1545015151476706" type="StoryText">
+                            <param id="0" name="Text">&quot;What&apos;s going on out there? Why isn&apos;t anything exploding?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7878259326138613" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6976822859166348" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="8280074336342461" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="9134160743385108" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="9148787680387414" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player1&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="7048363407016608" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="2831791237125649" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 51, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3451352810595803" type="StoryText">
+                            <param id="0" name="Text">&quot;The Friendlian Ambassador is trying to tell us we can all share the planet.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="6016730005622879" type="StoryText" />
+                        <action id="-16" name="Wait" sid="4242508068416935" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="7621917428879659" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="9985964554177752" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="6250941824983142" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="8098005290463373" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="5836919360241315" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 102, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2617951906214152" type="StoryText">
+                            <param id="0" name="Text">&quot;That&apos;s loser talk. Destroy Ambassador Pleasant and conquer Planet Friendly. That&apos;s an order.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="2822818428930104" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6047430846667564" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="7282835062820877" type="StoryImg" />
+                    </actions>
+                </event-block>
+                <comment>TODO: Fire Missile Right before the Set animation to &quot;Ambassador&quot; line</comment>
+                <event-block sid="1046478993235462">
+                    <conditions>
+                        <condition id="0" name="On function" sid="332877309323352" type="Function">
+                            <param id="0" name="Name">&quot;StoryPacifist&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="5753038236479212" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="176672922236617" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="8066289135429906" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 102, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2803834766680546" type="StoryText">
+                            <param id="0" name="Text"> &quot;Fine. I&apos;ll take care of it myself.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="1437950035469087" type="StoryText" />
+                        <action id="-16" name="Wait" sid="8273286136380946" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="41661146971242" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="3536735025206715" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="6919504974371451" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Ambassador&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="1268879336838846" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="7085574891588035" type="StoryText">
+                            <param id="0" name="Color">rgb(28, 121, 226)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="372293478126596" type="StoryText">
+                            <param id="0" name="Text">&quot;Fine. If fighting is all you know, then fighting is what you&apos;ll get.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="3073991213072697" type="StoryText" />
+                        <action id="-16" name="Wait" sid="4069403368715163" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3778721084528761" type="StoryText">
+                            <param id="0" name="Text">&quot;We of Planet Friendly may be peaceful, but we will defend our home to the death!&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="5203609954254205" type="StoryText" />
+                        <action id="-16" name="Wait" sid="6604654537215877" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="7324067238087331" type="StoryImg" />
+                    </actions>
+                </event-block>
+                <event-block sid="9375563282209267">
+                    <conditions>
+                        <condition id="0" name="On function" sid="7235495393430156" type="Function">
+                            <param id="0" name="Name">&quot;StoryEndingDestroy&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="8859306197251357" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="3389499587817054" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="2690947115968967" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 102, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="7152214492981287" type="StoryText">
+                            <param id="0" name="Text">&quot;You&apos;ve just destroyed Planet Friendly!&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="814032879760637" type="StoryText" />
+                        <action id="-16" name="Wait" sid="7223243425366047" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="9523590842162371" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="9349378683348161" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="4666475820308071" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player2&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="2378055502144646" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="9970168294537173" type="StoryText">
+                            <param id="0" name="Color">rgb(33, 99, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="367876738732385" type="StoryText">
+                            <param id="0" name="Text">&quot;My God. What have we done?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7330070462832715" type="StoryText" />
+                        <action id="-16" name="Wait" sid="4464834149666414" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="4603817568644504" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="2348644786100962" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="888136176737498" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player1&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="864967104269858" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="9672083037082386" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 51, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="8029739064048541" type="StoryText">
+                            <param id="0" name="Text">&quot;Oops.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="157361436701487" type="StoryText" />
+                        <action id="-16" name="Wait" sid="2846424228212194" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="3560434460512006" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="3698697604268739" type="System">
+                            <param id="0" name="Seconds">10</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="2837680994366051" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="6491894762867276" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="4754477599229919" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 102, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="889061872197598" type="StoryText">
+                            <param id="0" name="Text">&quot;Well. There you have it.  There&apos;s nowhere in the universe for our people, or anyone, to live.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="2027087798762538" type="StoryText" />
+                        <action id="-16" name="Wait" sid="434705621032963" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="1754988618233499" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="802999765337351" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="3059841296068315" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player1&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="1145930369252067" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="7773365606266612" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 51, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1196858255284926" type="StoryText">
+                            <param id="0" name="Text">&quot;Well, that&apos;s a kick in the pants.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="3981683356934422" type="StoryText" />
+                        <action id="-16" name="Wait" sid="1028681073402733" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="8520609270605483" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="9715207353393549" type="System">
+                            <param id="0" name="Seconds">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="6576697572460634" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player2&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="2497645286887775" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="7685085515097822" type="StoryText">
+                            <param id="0" name="Color">rgb(33, 99, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1219313665307666" type="StoryText">
+                            <param id="0" name="Text">&quot;What do we do now?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="1545910227557534" type="StoryText" />
+                        <action id="-16" name="Wait" sid="727581503180742" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="75351511142348" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="5792987989679607" type="System">
+                            <param id="0" name="Seconds">5.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="245012352542627" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Ambassador&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="806535609670748" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="9704525523166959" type="StoryText">
+                            <param id="0" name="Color">rgb(28, 121, 226)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1053004026393541" type="StoryText">
+                            <param id="0" name="Text">&quot;I&apos;m going to get drunk. Enjoy however much oxygen you each have left.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7529979547810988" type="StoryText" />
+                        <action id="-16" name="Wait" sid="3538352661453885" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="4411954565100228" type="StoryImg" />
+                    </actions>
+                </event-block>
+                <event-block sid="6233666090577449">
+                    <conditions>
+                        <condition id="0" name="On function" sid="9987692638980987" type="Function">
+                            <param id="0" name="Name">&quot;StoryEndingSaved&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="2854957178038093" type="StoryImg">
+                            <param id="0" name="Animation">&quot;MrPresident&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="7175354507243481" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="2978446332198876" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 102, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3754992440191298" type="StoryText">
+                            <param id="0" name="Text">&quot;You&apos;ve done it! Great work, Pilots! You&apos;ve secured Planet Friendly!&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="396149941635314" type="StoryText" />
+                        <action id="-16" name="Wait" sid="3692384480145146" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="940775872513972" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="7729270577456563" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="5416893111076778" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player2&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="5782841192903273" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="2619426872610002" type="StoryText">
+                            <param id="0" name="Color">rgb(33, 99, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3137004011118387" type="StoryText">
+                            <param id="0" name="Text">&quot;Yes, but we&apos;ve destroyed our souls. &quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="8761070926718411" type="StoryText" />
+                        <action id="-16" name="Wait" sid="3281447829935031" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2029122016098778" type="StoryText">
+                            <param id="0" name="Text">&quot;And now, what are we to do? Settle down and live out our days in peace?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="8783960084714036" type="StoryText" />
+                        <action id="-16" name="Wait" sid="7925721728433842" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2112630849514874" type="StoryText">
+                            <param id="0" name="Text">&quot;Just forget all the atrocities we&apos;ve committed to acquire this new home?&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="3518354587769409" type="StoryText" />
+                        <action id="-16" name="Wait" sid="4491769098333663" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1001394893244931" type="StoryText">
+                            <param id="0" name="Text"> &quot;I can&apos;t do it.  Self-destructing in three, two, one...&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="2437951092617417" type="StoryText" />
+                        <action id="-16" name="Wait" sid="2416360478640034" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="7278301758669918" type="StoryImg" />
+                        <action id="-16" name="Wait" sid="915689349357334" type="System">
+                            <param id="0" name="Seconds">5</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="4746500791555144" type="StoryImg">
+                            <param id="0" name="Animation">&quot;Player1&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="Fadein" id="0" name="Restart fade" sid="7987502619048834" type="StoryImg" />
+                        <action id="4" name="Set font color" sid="6515270330302974" type="StoryText">
+                            <param id="0" name="Color">rgb(255, 51, 0)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="8732186842115473" type="StoryText">
+                            <param id="0" name="Text">&quot;Good riddance. That guy was a drag.&quot;</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="8758355852936289" type="StoryText" />
+                        <action id="-16" name="Wait" sid="8730372911695903" type="System">
+                            <param id="0" name="Seconds">DIALOG_PAUSE_TIME</param>
+                        </action>
+                        <action behavior="Fadeout" id="0" name="Restart fade" sid="95985453290827" type="StoryImg" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -1269,5 +1755,52 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block sid="364557440450847">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="1056324971251954" type="PlanetFriendly">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="Y co-ordinate">150</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="1487776559547007" type="PlanetFriendly">
+                    <param id="0" name="Instance variable">isMoving</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-23" name="Move at angle" sid="5862643388331528" type="PlanetFriendly">
+                    <param id="0" name="Angle">90</param>
+                    <param id="1" name="Distance">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8651279652275155">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="5519757689250831" type="Bullet">
+                    <param id="0" name="Object">PlanetFriendly</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="6656974269291215" type="PlanetFriendly">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="796139285775876" type="Bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="8001827167856748">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="2092112268758973" type="PlanetFriendly">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3135618080749149" type="PlanetFriendly" />
+                <action id="0" name="Call function" sid="4717880174610925" type="Function">
+                    <param id="0" name="Name">&quot;StoryEndingDestroy&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
