@@ -88,7 +88,7 @@
                         <action id="25" name="Play at object" sid="1392752310192318" type="Audio">
                             <param id="0" name="Audio file">pew</param>
                             <param id="1" name="Loop">0</param>
-                            <param id="2" name="Volume">0</param>
+                            <param id="2" name="Volume">-10</param>
                             <param id="3" name="Object">Player</param>
                             <param id="4" name="Inner angle">360</param>
                             <param id="5" name="Outer angle">360</param>
@@ -525,7 +525,7 @@
         </event-group>
         <variable constant="1" name="DRONE_CIRCLE_SPEED" sid="1139560629416788" static="0" type="number">120</variable>
         <variable constant="1" name="DRONE_CIRCLE_DISTANCE" sid="9249968425961828" static="0" type="number">45</variable>
-        <event-group description="" sid="4942832535149624" title="Drone Ability">
+        <event-group collapsed="1" description="" sid="4942832535149624" title="Drone Ability">
             <sub-events>
                 <event-block any="1" sid="4861297341924405">
                     <conditions>
