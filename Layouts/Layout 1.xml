@@ -146,6 +146,8 @@
                     <instance-variables>
                         <CirclingPlayer>false</CirclingPlayer>
                         <CirclingAngle>0</CirclingAngle>
+                        <Attacking>false</Attacking>
+                        <StartingY>0</StartingY>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -156,6 +158,18 @@
                                 <bounce-off-solids>No</bounce-off-solids>
                                 <set-angle>Yes</set-angle>
                                 <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Turret">
+                            <properties>
+                                <range>600</range>
+                                <rate-of-fire>0.1</rate-of-fire>
+                                <rotate>Yes</rotate>
+                                <rotate-speed>720</rotate-speed>
+                                <target-mode>First in range</target-mode>
+                                <predictive-aim>Yes</predictive-aim>
+                                <projectile-speed>500</projectile-speed>
+                                <initial-state>Disabled</initial-state>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>

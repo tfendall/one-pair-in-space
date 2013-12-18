@@ -10,26 +10,26 @@
     <unique-id>2ajxfw52ycy8u</unique-id>
     <saved-with-version>15200</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
-        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
-        <plugin author="Scirra" id="Text" version="1">Text</plugin>
-        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
     </used-plugins>
     <used-behaviors>
-        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
-        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
-        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+        <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="Turret" version="1">Turret</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="lunarray" id="lunarray_LiteTween" version="1">LiteTween</behavior>
-        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
-        <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -464,10 +464,15 @@
             <instance-variables>
                 <instance-variable comment="false if this is just a normal projectile, true if this should be circling the player and helping out" name="CirclingPlayer" sid="2328812675621822" type="boolean" />
                 <instance-variable name="CirclingAngle" sid="3272667727469233" type="number" />
+                <instance-variable name="Attacking" sid="7914354017201808" type="boolean" />
+                <instance-variable comment="Y position from which the drone was shot" name="StartingY" sid="2053765948099679" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="4088170054226436">
                     <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Turret" sid="9006002361198168">
+                    <behavior id="Turret" />
                 </behavior-type>
             </behaviors>
             <animation-folder expanded="1">
