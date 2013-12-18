@@ -43,10 +43,10 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>0.5</x>
-                        <y>0</y>
+                        <y>2</y>
                         <z>0</z>
                         <width>479</width>
-                        <height>196</height>
+                        <height>140</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -65,10 +65,10 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>238</x>
-                        <y>360</y>
+                        <y>285</y>
                         <z>0</z>
-                        <width>332</width>
-                        <height>388</height>
+                        <width>249</width>
+                        <height>291</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.530927837</hotspotY>
@@ -78,7 +78,7 @@
                 </instance>
                 <instance type="Instruction" uid="18">
                     <properties>
-                        <text>Press A to Start</text>
+                        <text>Press A (or Space) to Start</text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-21,400,0</font>
                         <color>0,204,204</color>
@@ -92,13 +92,35 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>38.5</x>
-                        <y>568</y>
+                        <y>446</y>
                         <z>0</z>
                         <width>403</width>
                         <height>28</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="KeyboardControls" uid="24">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>234</x>
+                        <y>559</y>
+                        <z>0</z>
+                        <width>360</width>
+                        <height>150</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

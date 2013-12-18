@@ -76,7 +76,7 @@
                             <param id="1" name="Button">6</param>
                         </condition>
                         <condition id="2" name="Key is down" sid="5599426794089962" type="Keyboard">
-                            <param id="0" name="Key">69 (E)</param>
+                            <param id="0" name="Key">32 (Space)</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -129,7 +129,7 @@
                             <param id="1" name="Button">7</param>
                         </condition>
                         <condition id="2" name="Key is down" sid="6806257562100396" type="Keyboard">
-                            <param id="0" name="Key">85 (U)</param>
+                            <param id="0" name="Key">32 (Space)</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -338,8 +338,8 @@
                     <param id="2" name="Comparison">2</param>
                     <param id="3" name="Value">0</param>
                 </condition>
-                <condition id="2" name="Key is down" sid="471893458314848" type="Keyboard">
-                    <param id="0" name="Key">74 (J)</param>
+                <condition id="0" name="On key pressed" sid="2808348712457835" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
                 </condition>
             </conditions>
             <actions>
@@ -360,8 +360,8 @@
                     <param id="2" name="Comparison">4</param>
                     <param id="3" name="Value">0</param>
                 </condition>
-                <condition id="2" name="Key is down" sid="792134587823058" type="Keyboard">
-                    <param id="0" name="Key">76 (L)</param>
+                <condition id="0" name="On key pressed" sid="3989572231439468" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
                 </condition>
             </conditions>
             <actions>
@@ -382,8 +382,8 @@
                     <param id="2" name="Comparison">2</param>
                     <param id="3" name="Value">0</param>
                 </condition>
-                <condition id="2" name="Key is down" sid="5279946754711202" type="Keyboard">
-                    <param id="0" name="Key">73 (I)</param>
+                <condition id="0" name="On key pressed" sid="9267687287208051" type="Keyboard">
+                    <param id="0" name="Key">38 (Up arrow)</param>
                 </condition>
             </conditions>
             <actions>
@@ -404,8 +404,8 @@
                     <param id="2" name="Comparison">4</param>
                     <param id="3" name="Value">0</param>
                 </condition>
-                <condition id="2" name="Key is down" sid="1549518560338718" type="Keyboard">
-                    <param id="0" name="Key">75 (K)</param>
+                <condition id="0" name="On key pressed" sid="9733917569915394" type="Keyboard">
+                    <param id="0" name="Key">40 (Down arrow)</param>
                 </condition>
             </conditions>
             <actions>
@@ -472,18 +472,18 @@
             </actions>
         </event-block>
         <variable comment="Idle time before we start piloting for you" constant="1" name="IDLE_TIME_BEFORE_AUTOPILOT" sid="7587027627942193" static="0" type="number">1</variable>
-        <event-group collapsed="1" description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
+        <event-group description="If stick is inactive, make the second ship follow the first ship" sid="2089813058126001" title="Auto Pilot">
             <sub-events>
                 <event-block sid="7239340143530912">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="2484350883280269" type="System" />
-                        <condition id="5" name="Compare axis" sid="1408722695072208" type="Gamepad">
+                        <condition disabled="1" id="5" name="Compare axis" sid="1408722695072208" type="Gamepad">
                             <param id="0" name="Gamepad">0</param>
                             <param id="1" name="Axis">2</param>
                             <param id="2" name="Comparison">0</param>
                             <param id="3" name="Value">0</param>
                         </condition>
-                        <condition id="5" name="Compare axis" sid="9560509489794147" type="Gamepad">
+                        <condition disabled="1" id="5" name="Compare axis" sid="9560509489794147" type="Gamepad">
                             <param id="0" name="Gamepad">0</param>
                             <param id="1" name="Axis">3</param>
                             <param id="2" name="Comparison">0</param>
@@ -525,32 +525,42 @@
         </event-group>
         <variable constant="1" name="DRONE_CIRCLE_SPEED" sid="1139560629416788" static="0" type="number">120</variable>
         <variable constant="1" name="DRONE_CIRCLE_DISTANCE" sid="9249968425961828" static="0" type="number">45</variable>
-        <event-group collapsed="1" description="" sid="4942832535149624" title="Drone Ability">
+        <event-group description="" sid="4942832535149624" title="Drone Ability">
             <sub-events>
-                <event-block sid="4861297341924405">
+                <event-block any="1" sid="4861297341924405">
                     <conditions>
                         <condition id="6" name="On button pressed" sid="7290588006450331" type="Gamepad">
                             <param id="0" name="Gamepad">0</param>
                             <param id="1" name="Button">3</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" sid="5569024272429943" type="Player2">
-                            <param id="0" name="Instance variable">numDronesAvailable</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
+                        <condition id="0" name="On key pressed" sid="7987639039503604" type="Keyboard">
+                            <param id="0" name="Key">13 (Return)</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-3" name="Create object" sid="2578167420237278" type="System">
-                            <param id="0" name="Object to create">Drone</param>
-                            <param id="1" name="Layer">&quot;Game&quot;</param>
-                            <param id="2" name="X">Player2.ImagePointX(0)</param>
-                            <param id="3" name="Y">Player2.ImagePointY(0)</param>
-                        </action>
-                        <action id="-12" name="Subtract from" sid="5291186665660317" type="Player2">
-                            <param id="0" name="Instance variable">numDronesAvailable</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7553505689126915">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="5569024272429943" type="Player2">
+                                    <param id="0" name="Instance variable">numDronesAvailable</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="2578167420237278" type="System">
+                                    <param id="0" name="Object to create">Drone</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="X">Player2.ImagePointX(0)</param>
+                                    <param id="3" name="Y">Player2.ImagePointY(0)</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="5291186665660317" type="Player2">
+                                    <param id="0" name="Instance variable">numDronesAvailable</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="9690545893759464">
                     <conditions>

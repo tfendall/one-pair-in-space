@@ -3,10 +3,13 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 2</name>
     <events>
-        <event-block sid="3752168473266697">
+        <event-block any="1" sid="3752168473266697">
             <conditions>
                 <condition id="8" name="On any button pressed" sid="3160727420122723" type="Gamepad">
                     <param id="0" name="Gamepad">0</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="7433256560558459" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
                 </condition>
             </conditions>
             <actions>

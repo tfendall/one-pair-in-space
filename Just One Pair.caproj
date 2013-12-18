@@ -587,14 +587,14 @@
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="154031364196347" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.530928">
                         <collision-poly>
-                            <point x="0.240964" y="0.115979" />
+                            <point x="0.13253" y="0.113402" />
                             <point x="0.5" y="0.185567" />
-                            <point x="0.623494" y="0.231959" />
-                            <point x="0.972892" y="0.530928" />
-                            <point x="0.78012" y="0.963918" />
+                            <point x="0.879518" y="0.103093" />
+                            <point x="0.963855" y="0.5" />
+                            <point x="0.804217" y="0.832474" />
                             <point x="0.5" y="0.801546" />
-                            <point x="0.361446" y="0.842784" />
-                            <point x="0.0331325" y="0.530928" />
+                            <point x="0.286145" y="0.755155" />
+                            <point x="0.0481928" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -1094,6 +1094,25 @@
                             <point x="0.675781" y="0.566406" />
                             <point x="0.535156" y="0.578125" />
                             <point x="0.453125" y="0.511719" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="KeyboardControls" sid="3092445885025768">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="42413796992489" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0458333" y="0.11" />
+                            <point x="0.5" y="0.66" />
+                            <point x="0.94375" y="0.135" />
+                            <point x="0.985417" y="0.5" />
+                            <point x="0.954167" y="0.89" />
+                            <point x="0.5" y="0.975" />
+                            <point x="0.0895833" y="0.785" />
+                            <point x="0.2" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
